@@ -7,21 +7,22 @@
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-            <a href="/funcionarios/novo" class="btn btn-primary">Novo</a>
+
+            <a href="/exercicios/novo" class="btn btn-primary">Novo</a>
             <table class="table" id="tabexercicios">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Nome</th>
-                        <th>Sexo</th>
-                        <th>Telefone</th>
-                        <th>Cargo</th>
-                        <th>Clientes</th>
+                        <th>Imagem</th>
+                        <th>Categoria</th>
+                        <th>Nivel Recomendado</th>
                     </tr>
                 </thead>
                 <tbody>
                     
                 </tbody>
+            </table>
         </main>
         <footer th:include="layout :: footer"></footer>
     </body>
