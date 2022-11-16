@@ -47,4 +47,10 @@ public class Alimento {
     public void setCategoria(CategoriaAlimento categoria) {
         this.categoria = categoria;
     }
+    public ArrayList<Alergia> getListaAlergias() {
+        return listaAlergias;
+    }
+    public void setListaAlergias(ArrayList<Alergia> listaAlergias) {
+        this.listaAlergias = listaAlergias;
+    }
 }
