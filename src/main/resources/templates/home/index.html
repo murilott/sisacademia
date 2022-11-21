@@ -3,12 +3,30 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
     <head th:include="layout :: head"></head>
-
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-
-        </main>
-        <footer th:include="layout :: footer"></footer>
+                <header class="topo">
+                    <h1>Home</h1>
+                </header>
+                <nav class="barra">
+                    <a class="btn btn-info" href="#">Alguma coisa</a>
+                    <a class="btn btn-info" href="#">Alguma coisa</a>
+                    <a class="btn btn-info" href="#">Alguma coisa</a>
+                </nav>
+                <div class="usuario">
+                    nome do usuario
+                </div>
+                <div class="infousuario">
+                    informaçoes do usuario
+                </div>
+                <div class="rotina">
+                    informações da rotina
+                </div>
+                <div class="dieta">
+                    informações da dieta
+                </div>
+            </main>
+         <footer th:include="layout :: footer"></footer>
     </body>
 </html>
