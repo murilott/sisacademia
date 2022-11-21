@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/alimentos")
-public class AlimentoController {
+@RequestMapping("/dieta")
+public class DietaController {
 
     @GetMapping
     public ModelAndView index(){
-        return new ModelAndView("alimento/index");
+        return new ModelAndView("dieta/index");
     }
 }
