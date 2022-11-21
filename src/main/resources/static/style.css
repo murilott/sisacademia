@@ -1,0 +1,46 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    max-width: 960px;
+    margin: auto;
+}
+.container {
+    border: 1px solid black;
+    display: grid;
+    padding: 10px;
+    text-align: center;
+    grid-template:
+    'topo topo topo'
+    'barra barra barra'
+    'usuario rotina dieta'
+    'infousuario rotina dieta'
+}
+.topo {
+    border: 1px solid black;
+    grid-area: topo;
+}
+.infousuario {
+    border: 1px solid black;
+    grid-area: infousuario;
+    padding: 10px;
+}
+.usuario {
+    border: 1px solid black;
+    grid-area: usuario;
+    padding: 10px;
+}
+.rotina {
+    border: 1px solid black;
+    grid-area: rotina;
+    padding: 10px;
+}
+.dieta {
+    border: 1px solid black;
+    grid-area: dieta;
+    padding: 10px;
+}
+.barra {
+    padding: 10px;
+    grid-area: barra;
+    border: 1px solid black;
+}
