@@ -1,15 +1,30 @@
 package br.univille.sisacademia.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import javax.persistence.Id;
+
+@Entity
 public class Alimento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private String imagem;
     private float porcao;
     private float calPorcao;
+    @ManyToOne
     private CategoriaAlimento categoria;
-    private ArrayList<Alergia> listaAlergias = new ArrayList<Alergia>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Alergia> listaAlergias = new ArrayList<Alergia>();
 
     public long getId() {
         return id;
@@ -47,7 +62,7 @@ public class Alimento {
     public void setCategoria(CategoriaAlimento categoria) {
         this.categoria = categoria;
     }
-    public ArrayList<Alergia> getListaAlergias() {
+    public List<Alergia> getListaAlergias() {
         return listaAlergias;
     }
     public void setListaAlergias(ArrayList<Alergia> listaAlergias) {

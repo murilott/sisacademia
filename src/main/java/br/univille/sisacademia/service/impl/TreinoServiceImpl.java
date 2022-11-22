@@ -3,11 +3,13 @@ package br.univille.sisacademia.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.univille.sisacademia.entity.Treino;
 import br.univille.sisacademia.repository.TreinoRepository;
 import br.univille.sisacademia.service.TreinoService;
 
+@Service
 public class TreinoServiceImpl implements TreinoService {
 
     @Autowired

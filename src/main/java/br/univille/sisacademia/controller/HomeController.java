@@ -2,6 +2,7 @@ package br.univille.sisacademia.controller;
 
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +16,17 @@ import br.univille.sisacademia.service.UsuarioService;
 @RequestMapping("/home")
 public class HomeController {
 
+    @Autowired
     private UsuarioService service;
 
+    @Autowired
     private RotinaService rotinaService;
 
+    @Autowired
     private DietaService dietaService;
 
     @GetMapping
-    public ModelAndView index(){
+    public ModelAndView index() {
         var listaUsuarios = service.getAll();
         var listaDietas = dietaService.getAll();
         var listaRotinas = rotinaService.getAll();
@@ -34,5 +38,4 @@ public class HomeController {
         return new ModelAndView("home/index", dados);
     }
 
-    
 }

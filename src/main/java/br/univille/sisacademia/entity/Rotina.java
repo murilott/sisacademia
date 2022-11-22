@@ -2,13 +2,26 @@ package br.univille.sisacademia.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+
+import javax.persistence.Id;
+
+@Entity
 public class Rotina {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private float tempo;
     private float calorias;
-    private ArrayList<Treino> listaTreinos = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Treino> listaTreinos = new ArrayList<Treino>();
     private Date dataInicio;
 
     public float duracao() {
@@ -39,7 +52,7 @@ public class Rotina {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public ArrayList<Treino> getListaTreinos() {
+    public List<Treino> getListaTreinos() {
         return listaTreinos;
     }
     public void setListaTreinos(ArrayList<Treino> listaTreinos) {

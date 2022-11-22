@@ -2,20 +2,41 @@ package br.univille.sisacademia.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private String sexo;
     private String telefone;
     private String endereco;
+    @Temporal(value = TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataNascimento;
     private float altura;
     private float peso;
     private int idade;
     private boolean alergico;
-    private ArrayList<Alergia> listaAlergias = new ArrayList<Alergia>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Alergia> listaAlergias = new ArrayList<Alergia>();
+    @ManyToOne
     private Rotina rotinaAtual;
+    @ManyToOne
     private Dieta dietaAtual;
     
     public long getId() {
@@ -78,7 +99,7 @@ public class Usuario {
     public void setAlergico(boolean alergico) {
         this.alergico = alergico;
     }
-    public ArrayList<Alergia> getListaAlergias() {
+    public List<Alergia> getListaAlergias() {
         return listaAlergias;
     }
     public void setListaAlergias(ArrayList<Alergia> listaAlergias) {

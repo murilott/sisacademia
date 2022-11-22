@@ -2,12 +2,30 @@ package br.univille.sisacademia.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
 public class Dieta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private float calorias;
-    private ArrayList<Prato> listaPratos = new ArrayList<Prato>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Prato> listaPratos = new ArrayList<Prato>();
+    @Temporal(value = TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataInicio;
 
     public float caloriaTotal() {
@@ -29,7 +47,7 @@ public class Dieta {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public ArrayList<Prato> getListaPratos() {
+    public List<Prato> getListaPratos() {
         return listaPratos;
     }
     public void setListaPratos(ArrayList<Prato> listaPratos) {

@@ -3,11 +3,14 @@ package br.univille.sisacademia.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 import br.univille.sisacademia.entity.Dieta;
 import br.univille.sisacademia.repository.DietaRepository;
 import br.univille.sisacademia.service.DietaService;
 
+@Service
 public class DietaServiceImpl implements DietaService {
 
     @Autowired

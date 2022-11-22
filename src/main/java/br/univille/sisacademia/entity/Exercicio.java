@@ -1,10 +1,21 @@
 package br.univille.sisacademia.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+
+import javax.persistence.Id;
+
+@Entity
 public class Exercicio {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private String imagem;
     private String nivelRecomendado;
+    @ManyToOne
     private CategoriaExercicio categoria;
 
     public long getId() {
