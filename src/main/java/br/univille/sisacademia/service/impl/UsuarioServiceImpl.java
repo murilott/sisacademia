@@ -3,11 +3,13 @@ package br.univille.sisacademia.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.univille.sisacademia.entity.Usuario;
 import br.univille.sisacademia.repository.UsuarioRepository;
 import br.univille.sisacademia.service.UsuarioService;
 
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired

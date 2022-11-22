@@ -2,6 +2,7 @@ package br.univille.sisacademia.controller;
 
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +18,14 @@ import br.univille.sisacademia.service.UsuarioService;
 @RequestMapping("/cadastro")
 public class CadastroController {
 
+    @Autowired
     private UsuarioService service;
 
     @GetMapping
     public ModelAndView index(){
         var listaUsuarios = service.getAll();
 
-        return new ModelAndView("home/index", "listaUsuarios", listaUsuarios);
+        return new ModelAndView("cadastro/index", "listaUsuarios", listaUsuarios);
     }
 
     @GetMapping("/novo")

@@ -1,6 +1,16 @@
 package br.univille.sisacademia.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+
+import javax.persistence.Id;
+
+@Entity
 public class Treino {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private float duracao;
     private boolean repete;
@@ -8,10 +18,12 @@ public class Treino {
     private int repeticoes;
     private String intensidade;
     private float calGasto;
+    @ManyToOne
     private Exercicio exercicio;
 
     public float calculaCaloriasExercicio() {
-        return 0;
+        calGasto = (serie * repeticoes) * exercicio.getCategoria().getCaloriaMedia();
+        return calGasto;
     }
 
     public long getId() {
