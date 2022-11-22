@@ -6,6 +6,11 @@ public class Prato {
     private float quantidade;
     private float calorias;
     private Alimento alimento;
+
+    public float calculaCaloriasAlimento() {
+        calorias = alimento.getPorcao() * alimento.getCalPorcao();
+        return calorias;
+    }
     
     public long getId() {
         return id;

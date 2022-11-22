@@ -6,15 +6,25 @@ import java.util.Date;
 public class Rotina {
     private long id;
     private String nome;
+    private float tempo;
+    private float calorias;
     private ArrayList<Treino> listaTreinos = new ArrayList<>();
     private Date dataInicio;
 
     public float duracao() {
-        return 0;
+        // futuramente verificar se a lista de treinos possui algum treino que tem a variável "repetições"
+        // com o valor "falso" para evitar erros
+        for ( int i = 0; i < listaTreinos.size(); i++ ) {
+            tempo =+ listaTreinos.get(i).getDuracao();
+        }
+        return tempo;
     }
 
     public float caloriaGastoTotal() {
-        return 0;
+        for ( int i = 0; i < listaTreinos.size(); i++ ) {
+            calorias =+ listaTreinos.get(i).calculaCaloriasExercicio();
+        }
+        return calorias;
     }
 
     public long getId() {

@@ -6,11 +6,15 @@ import java.util.Date;
 public class Dieta {
     private long id;
     private String nome;
+    private float calorias;
     private ArrayList<Prato> listaPratos = new ArrayList<Prato>();
     private Date dataInicio;
 
     public float caloriaTotal() {
-        return 0;
+        for ( int i = 0; i < listaPratos.size(); i++ ) {
+            calorias =+ listaPratos.get(i).calculaCaloriasAlimento();
+        }
+        return calorias;
     }
 
     public long getId() {
