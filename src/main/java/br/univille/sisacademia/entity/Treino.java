@@ -11,7 +11,8 @@ public class Treino {
     private Exercicio exercicio;
 
     public float calculaCaloriasExercicio() {
-        return 0;
+        calGasto = (serie * repeticoes) * exercicio.getCategoria().getCaloriaMedia();
+        return calGasto;
     }
 
     public long getId() {
