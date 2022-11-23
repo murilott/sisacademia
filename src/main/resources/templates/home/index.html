@@ -15,7 +15,18 @@
                     <a class="btn btn-info" href="#">Alguma coisa</a>
                 </nav>
                 <div class="usuario">
-                    nome do usuario
+                    <table class="table" id="tabusuario">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="umUsuario : ${listaUsuarios}">
+                                <td th:text="${umUsuario.nome}"></td>  
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="infousuario">
                     informaçoes do usuario
