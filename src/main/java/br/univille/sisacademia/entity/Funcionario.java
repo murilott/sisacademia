@@ -1,14 +1,27 @@
 package br.univille.sisacademia.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+
+import javax.persistence.Id;
+
+@Entity
 public class Funcionario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private String sexo;
     private String telefone;
     private String cargo;
-    private ArrayList<Usuario> listaClientes = new ArrayList<Usuario>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Usuario> listaClientes = new ArrayList<Usuario>();
     
     public long getId() {
         return id;
@@ -40,7 +53,7 @@ public class Funcionario {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-    public ArrayList<Usuario> getListaClientes() {
+    public List<Usuario> getListaClientes() {
         return listaClientes;
     }
     public void setListaClientes(ArrayList<Usuario> listaClientes) {
