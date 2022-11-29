@@ -40,7 +40,7 @@ public class CadastroController {
     public ModelAndView save(Usuario usuario, BindingResult bindingResult) {
         service.save(usuario);
 
-        return new ModelAndView("redirect:/cadastro");
+        return new ModelAndView("redirect:/home");
     }
 
     @GetMapping("/alterar/{id}")
