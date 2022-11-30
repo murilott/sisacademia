@@ -2,7 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
-    <head th:include="layout :: head"></head>
+    <head th:include="layout :: head">
+
+    </head>
+    <link rel="stylesheet" href="style.css">
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
@@ -69,10 +72,10 @@
                     </table>
                 </div>
                 <div class="rotina">
-                    informações da rotina
+                    <a class="btn btn-info" href="/rotina">Adicionar Rotina</a>
                 </div>
                 <div class="dieta">
-                    informações da dieta
+                    <a class="btn btn-info" href="/dieta">Adicionar Dieta</a>
                 </div>
             </main>
          <footer th:include="layout :: footer"></footer>
