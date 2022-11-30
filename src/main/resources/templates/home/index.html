@@ -3,8 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
     <head th:include="layout :: head"></head>
-
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
     
     <body>
         <nav th:replace="layout :: menu"></nav>
@@ -14,7 +13,7 @@
                 </header>
                 <nav class="barra">
                     <tr th:each="umUsuario : ${listaUsuarios}">
-                    <a th:href="@{'cadastro/alterar/' + ${umUsuario.id}}" class="btn btn-info">Editar perfil</a>
+                    <a th:href="@{'/cadastro/alterar/' + ${umUsuario.id}}" class="btn btn-info">Editar perfil</a>
                     </tr>
                     <a class="btn btn-info" href="#">Alguma coisa</a>
                     <a class="btn btn-info" href="#">Alguma coisa</a>
@@ -67,6 +66,11 @@
                                 <td th:text="${umUsuario.altura}"></td>
                                 <td th:text="${umUsuario.idade}"></td> 
                                 <td th:text="${umUsuario.peso}"></td>
+
+                                <td th:if="${umUsuario.alergico}"
+                                    th:text="Sim"></td>
+                                <td th:unless="${umUsuario.alergico}">Não</td>
+                                <!-- <td th:text="${umUsuario.alergico}"></td> -->
                             </tr>
                         </tbody>  
                     </table>
