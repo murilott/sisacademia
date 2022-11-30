@@ -11,7 +11,7 @@
                 method="POST" th:object="${usuario}">
 
                 <input type="hidden" th:field="*{id}">
-                
+
                 <div class="form-group">
                     <label for="txtnome">Nome:</label>
                     <input type="text" th:field="*{nome}"
@@ -53,19 +53,17 @@
                         class="form-control" id="txtpeso">
                 </div>
                 <div class="form-group">
-                    <label for="txtalergico">Possui alergia?</label>
-                        <p>
-                        <input type="radio" name="yes_no">Sim</input>
-                        </p>
-                        <p>
-                        <input type="radio" name="yes_no" checked>Não</input>
-                        </p>
+                    <label>Possui alergia?</label>
+                        <br>
+                        <input type="radio" name="yes_no" th:field="*{alergico}" value="true" id="sim"></input>
+                        <label for="sim">Sim</label>
+                        <br>
+                        <input type="radio" name="yes_no" th:field="*{alergico}" value="false" id="nao" checked></input>
+                        <label for="nao">Não</label>
                 </div>
-                
 
-                
-                
-                
+                <br>
+
                 <button type="submit" class="btn btn-primary">Cadastrar-se</button>
             </form>
         </main>
