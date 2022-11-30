@@ -8,8 +8,8 @@
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
 
-            <a href="/clientes/novo" class="btn btn-primary">Novo</a>
-            <table class="table" id="tabclientes">
+            <a href="/cadastro/novo" class="btn btn-primary">Novo</a>
+            <table class="table" id="tabusuario">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -27,7 +27,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    <tr th:each="umUsuario : ${listaUsuarios}">
+                        <td th:text="${umUsuario.nome}"></td>  
+                    </tr>
                 </tbody>
             </table>
         </main>
