@@ -1,6 +1,13 @@
 package br.univille.sisacademia.controller;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
+import java.time.YearMonth;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 import javax.validation.Valid;
 
@@ -43,6 +50,21 @@ public class CadastroController {
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("usuario", usuario);
 
+        LocalDate localDate = usuario.getDataNascimento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        int anoAtual = YearMonth.now().getYear();
+        int mesAtual = YearMonth.now().getMonthValue();
+        int anoUsuario = localDate.getYear();
+        int mesUsuario = localDate.getMonthValue();
+        int idade;
+
+        if ( mesAtual < mesUsuario ) {
+            idade = anoAtual - anoUsuario - 1;
+        } else {
+            idade = anoAtual - anoUsuario;
+        }
+        usuario.setIdade(idade);
+
         if ( bindingResult.hasErrors() ) {
             return new ModelAndView("cadastro/form", dados);
         }
@@ -53,14 +75,10 @@ public class CadastroController {
     }
 
     @GetMapping("/alterar/{id}")
-    public ModelAndView alterar(@PathVariable("id") long id, BindingResult bindingResult) {
+    public ModelAndView alterar(@PathVariable("id") long id) {
         var umUsuario = service.findById(id);
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("usuario", umUsuario);
-
-        if ( bindingResult.hasErrors() ) {
-            return new ModelAndView("cadastro/form", dados);
-        }
 
         return new ModelAndView("cadastro/form", dados);
     }
