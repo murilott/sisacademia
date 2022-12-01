@@ -13,23 +13,40 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank(message = "Campo nome não pode ser em branco")
     private String nome;
+    @Pattern(regexp = "Masculino|Feminino",
+            flags = Pattern.Flag.CANON_EQ,
+            message = "Valor inválido, utilize Masculino ou Feminino")
     private String sexo;
+    @NotBlank(message = "Campo Telefone não pode ser em branco")
+    @NumberFormat
     private String telefone;
+    @NotBlank(message = "Campo Endereço não pode ser em branco")
     private String endereco;
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past(message = "Este campo deve conter uma data no passado")
     private Date dataNascimento;
+    @NotNull(message = "Campo Altura não pode ser em branco")
     private float altura;
+    @NotNull(message = "Campo Peso não pode ser em branco")
     private float peso;
+    @NotNull(message = "Campo Idade não pode ser em branco")
     private int idade;
     private boolean alergico;
     @OneToMany(cascade = CascadeType.ALL)

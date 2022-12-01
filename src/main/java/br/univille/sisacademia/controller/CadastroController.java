@@ -2,6 +2,8 @@ package br.univille.sisacademia.controller;
 
 import java.util.HashMap;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -37,17 +39,28 @@ public class CadastroController {
         return new ModelAndView("cadastro/form", dados);    }
 
     @PostMapping(params = "form")
-    public ModelAndView save(Usuario usuario, BindingResult bindingResult) {
-        service.save(usuario);
+    public ModelAndView save(@Valid Usuario usuario, BindingResult bindingResult) {
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("usuario", usuario);
 
+        if ( bindingResult.hasErrors() ) {
+            return new ModelAndView("cadastro/form", dados);
+        }
+        
+        service.save(usuario);
+        
         return new ModelAndView("redirect:/home/" + usuario.getId());
     }
 
     @GetMapping("/alterar/{id}")
-    public ModelAndView alterar(@PathVariable("id") long id) {
+    public ModelAndView alterar(@PathVariable("id") long id, BindingResult bindingResult) {
         var umUsuario = service.findById(id);
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("usuario", umUsuario);
+
+        if ( bindingResult.hasErrors() ) {
+            return new ModelAndView("cadastro/form", dados);
+        }
 
         return new ModelAndView("cadastro/form", dados);
     }
