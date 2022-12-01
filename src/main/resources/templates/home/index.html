@@ -3,14 +3,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
     <head th:include="layout :: head"></head>
-<<<<<<< HEAD
 
     <link rel="stylesheet" href="/home.css">
 
-=======
-    <link rel="stylesheet" href="style.css"> 
-    
->>>>>>> e9818b295fb6b6247462dd43c86d23f340d0555e
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
@@ -76,16 +71,15 @@
                                 <td th:if="${umUsuario.alergico}"
                                     th:text="Sim"></td>
                                 <td th:unless="${umUsuario.alergico}">Não</td>
-                                <!-- <td th:text="${umUsuario.alergico}"></td> -->
                             </tr>
                         </tbody>  
                     </table>
                 </div>
                 <div class="rotina">
-                    <a class="btn btn-info" href="/rotina">Adicionar Rotina</a>
+                    informações da rotina
                 </div>
                 <div class="dieta">
-                    <a class="btn btn-info" href="/dieta">Adicionar Dieta</a>
+                    informações da dieta
                 </div>
             </main>
          <footer th:include="layout :: footer"></footer>
