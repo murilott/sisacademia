@@ -16,41 +16,64 @@
                     <label for="txtnome">Nome:</label>
                     <input type="text" th:field="*{nome}"
                         class="form-control" id="txtnome">
+                    <p th:if="${#fields.hasErrors('nome')}"
+                    th:errors="*{nome}"
+                    class="alert alert-danger"></p>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="txtidade">Idade:</label>
                     <input type="number" th:field="*{idade}"
                         class="form-control" id="txtidade">
-                </div>
+                    <p th:if="${#fields.hasErrors('idade')}"
+                    th:errors="*{idade}"
+                    class="alert alert-danger"></p>
+                </div> -->
                 <div class="form-group">
-                    <label for="txtsexo">Sexo:</label>
-                    <input type="text" th:field="*{sexo}"
-                        class="form-control" id="txtsexo">
+                    <label>Sexo:</label>
+                    <select class="form-select" aria-label="Default select example" th:field="*{sexo}">
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="txttelefone">Telefone:</label>
                     <input type="text" th:field="*{telefone}"
                         class="form-control" id="txttelefone">
+                    <p th:if="${#fields.hasErrors('telefone')}"
+                    th:errors="*{telefone}"
+                    class="alert alert-danger"></p>
                 </div>
                 <div class="form-group">
                     <label for="txtendereco">Endereço:</label>
                     <input type="text" th:field="*{endereco}"
                         class="form-control" id="txtendereco">
+                    <p th:if="${#fields.hasErrors('endereco')}"
+                    th:errors="*{endereco}"
+                    class="alert alert-danger"></p>
                 </div>
                 <div class="form-group">
                     <label for="txtDataNascimento">Data de Nascimento:</label>
                     <input type="date" th:field="*{dataNascimento}"
                         class="form-control" id="txtDataNascimento">
+                    <p th:if="${#fields.hasErrors('dataNascimento')}"
+                    th:errors="*{dataNascimento}"
+                    class="alert alert-danger"></p>
                 </div>
                 <div class="form-group">
-                    <label for="txtaltura">Altura:</label>
+                    <label for="txtaltura">Altura(m):</label>
                     <input type="number" step="any" th:field="*{altura}"
                         class="form-control" id="txtaltura">
+                    <p th:if="${#fields.hasErrors('altura')}"
+                    th:errors="*{altura}"
+                    class="alert alert-danger"></p>
                 </div>
                 <div class="form-group">
-                    <label for="txtpeso">Peso:</label>
+                    <label for="txtpeso">Peso(kg):</label>
                     <input type="number" step="any" th:field="*{peso}"
                         class="form-control" id="txtpeso">
+                    <p th:if="${#fields.hasErrors('peso')}"
+                    th:errors="*{peso}"
+                    class="alert alert-danger"></p>
                 </div>
                 <div class="form-group">
                     <label>Possui alergia?</label>
