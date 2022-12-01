@@ -1,0 +1,31 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9rem;
+    max-width: 960px;
+    margin: auto;
+}
+.container {
+    border: 1px solid black;
+    display: grid;
+    padding: 10px;
+    text-align: center;
+    grid-template:
+    'topo topo'
+    'listarotinas inforotina';
+    
+}
+.topo {
+    border: 1px solid black;
+    grid-area: topo;
+    padding: 10px;
+}
+.listarotinas {
+    border: 1px solid black;
+    grid-area: listarotinas;
+    padding: 100px;
+}
+.inforotina {
+    border: 1px solid black;
+    grid-area: inforotina;
+    padding: 100px;
+}

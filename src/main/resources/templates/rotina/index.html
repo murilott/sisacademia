@@ -3,16 +3,19 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
     <head th:include="layout :: head"></head>
-
+    <link rel="stylesheet" href="/rotina.css">
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
+            <header class="topo">
+                <h1>Rotina</h1>
+            </header>
             <div class="listarotinas">
-                lista de rotinas
+                <a href="/rotina/novo" class="btn btn-info">Escolher Rotina</a>
             </div>
 
             <div class="inforotina">
-                informações da rotina
+                Informações da rotina
             </div>       
         </main>
         <footer th:include="layout :: footer"></footer>
