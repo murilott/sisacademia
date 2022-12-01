@@ -32,6 +32,7 @@ public class Rotina {
         for ( int i = 0; i < listaTreinos.size(); i++ ) {
             tempo =+ listaTreinos.get(i).getDuracao();
         }
+
         return tempo;
     }
 
@@ -39,6 +40,7 @@ public class Rotina {
         for ( int i = 0; i < listaTreinos.size(); i++ ) {
             calorias =+ listaTreinos.get(i).calculaCaloriasExercicio();
         }
+        
         return calorias;
     }
 

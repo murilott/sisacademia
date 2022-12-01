@@ -5,7 +5,6 @@
     <head th:include="layout :: head"></head>
 
     <link rel="stylesheet" href="/home.css">
-     
 
     <body>
         <nav th:replace="layout :: menu"></nav>
@@ -72,7 +71,6 @@
                                 <td th:if="${umUsuario.alergico}"
                                     th:text="Sim"></td>
                                 <td th:unless="${umUsuario.alergico}">Não</td>
-                                <!-- <td th:text="${umUsuario.alergico}"></td> -->
                             </tr>
                         </tbody>  
                     </table>
