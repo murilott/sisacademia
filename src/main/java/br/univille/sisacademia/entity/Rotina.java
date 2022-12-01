@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Rotina {
@@ -21,6 +22,7 @@ public class Rotina {
     private float tempo;
     private float calorias;
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "rotina_id")
     private List<Treino> listaTreinos = new ArrayList<Treino>();
     private Date dataInicio;
 
