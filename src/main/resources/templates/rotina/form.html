@@ -8,7 +8,7 @@
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
 
-            <form th:action="@{/rotina/(inctreino)}"
+            <form th:action="@{/rotina}"
                 method="POST" th:object="${rotina}">
 
                 <input type="hidden" th:field="${rotina.id}">
@@ -43,7 +43,13 @@
                                     th:field="${rotina.listaTreinos[__${stat.index}__].repeticoes}">
                                     <td th:text="${umTreino.intensidade}"></td>
                                 <input type="hidden"
-                                    th:field="${rotina.listaTreinos[__${stat.index}__].intensidade}">     
+                                    th:field="${rotina.listaTreinos[__${stat.index}__].intensidade}">
+                                    <td>
+                                        <button class="btn btn-danger"
+                                            type="submit"
+                                            name="removetreino"
+                                            th:value="__${stat.index}__">Remover</button>
+                                    </td>     
                             </tr>
                         </tbody>
                     </table>
@@ -55,9 +61,9 @@
                         <div class="form-group">
                             <label for="exerc">Exercício:</label>
                             <select class="form-select" id="exerc"
-                                th:field="${novoTreino.exercicio}">
+                                th:field="${novoTreino.exercicio.nome}">
                                 <option th:each="umExercicio: ${listaExercicios}"
-                                    th:value="${umExercicio}"
+                                    th:value="${umExercicio.nome}"
                                     th:text="${umExercicio.nome}">
                                 </option>
                             </select>
@@ -88,7 +94,6 @@
                 <button type="submit" name="save"
                 class="btn btn-primary">Enviar</button>
             </form>
-            
         </main>
         <footer th:include="layout :: footer"></footer>
     </body>

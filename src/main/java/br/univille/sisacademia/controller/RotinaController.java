@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.sisacademia.entity.Exercicio;
@@ -52,12 +53,18 @@ public class RotinaController {
         var rotina = new Rotina();
         var treino = new Treino();
         var exercicio = new Exercicio();
+        var listaRotinas = service.getAll();
+        var listaTreinos = treinoService.getAll();
+        var listaExercicios = exercicioService.getAll();
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("rotina", rotina);
         dados.put("treino", treino);
         dados.put("exercicio", exercicio);
         dados.put("novoExercicio", new Exercicio());
         dados.put("novoTreino", new Treino());
+        dados.put("listaRotinas", listaRotinas);
+        dados.put("listaTreinos", listaTreinos);
+        dados.put("listaExercicios", listaExercicios);
 
         return new ModelAndView("rotina/form", dados);    
     }
@@ -85,7 +92,7 @@ public class RotinaController {
         return new ModelAndView("redirect:/rotina");
     }
     @PostMapping(params = "inctreino")
-    public ModelAndView incluirTreino(Rotina rotina, Treino novoTreino, Exercicio exercicio){
+    public ModelAndView incluirTreino(Rotina rotina, Treino novoTreino){
         rotina.getListaTreinos().add(novoTreino);
         var listaUsuarios = usuarioService.getAll();
         var listaExercicios = exercicioService.getAll();
@@ -94,7 +101,16 @@ public class RotinaController {
         dados.put("listaUsuarios", listaUsuarios);
         dados.put("novoTreino", new Treino());
         dados.put("listaExercicios", listaExercicios);
-        dados.put("novoExercicio", new Exercicio());
+        return new ModelAndView("rotina/form", dados);
+    }
+    @PostMapping(params = "removetreino")
+    public ModelAndView removerItem(@RequestParam("removetreino") int index, Rotina rotina){
+        rotina.getListaTreinos().remove(index);
+        var listaExercicios = exercicioService.getAll();
+        HashMap<String,Object> dados = new HashMap<>();
+        dados.put("rotina", rotina);
+        dados.put("listaExercicios", listaExercicios);
+        dados.put("novoTreino", new Treino());
         return new ModelAndView("rotina/form", dados);
     }
 }

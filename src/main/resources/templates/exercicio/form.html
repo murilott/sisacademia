@@ -8,7 +8,7 @@
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
 
-            <form th:action="@{/exercicio/(incexercicio)}"
+            <form th:action="@{/exercicio}"
                 method="POST" th:object="${exercicio}">
 
                 <input type="hidden" th:field="${exercicio.id}">
@@ -38,6 +38,12 @@
                                     <td th:text="${umExercicio.categoria}"></td>
                                     <!-- <input type="hidden"
                                     th:field="*{listaExercicios[__${stat.index}__].categoria}"> -->
+                                    <td>
+                                        <button class="btn btn-danger"
+                                            type="submit"
+                                            name="removeitem"
+                                            th:value="__${stat.index}__">Remover</button>
+                                    </td>
                                 </tr>
                             </tbody>   
                         </table>
@@ -74,6 +80,7 @@
                                 class="btn btn-primary">Adicionar Exercício</button>
                             </div>
                         </div>
+                        <a href="/rotina/novo" class="btn btn-info">Montar treino</a>
                     </div>
                 </form>
             
