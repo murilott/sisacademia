@@ -4,16 +4,16 @@
       
     <head th:include="layout :: head"></head>
 
-    <!-- <style>
+    <style>
 
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 0.9rem;
-        max-width: 960px;
-        margin: auto;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1rem;
+            max-width: 1200px;
+            margin: auto;
+        }
 
-    </style> -->
+    </style>
 
     <nav th:replace="layout :: menu"></nav>
     <body>
@@ -34,7 +34,6 @@
                         <th>Idade</th>
                         <th>Peso</th>
                         <th>Alergia</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,12 +54,35 @@
                                     th:text="Sim"></td>
                                 <td th:unless="${umUsuario.alergico}">Não</td>
                         <td>
-                            <button class="btn btn-danger js-delete">Excluir</button>
+                            <button class="btn btn-danger js-delete" th:data-id="${umUsuario.id}">Excluir</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </main>
+
+        <div class="modal" tabindex="-1" id="modalusuario">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Excluir Usuário</h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>Confirme a exclusão do usuário</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+                        <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
         <footer th:include="layout :: footer"></footer>
+        <script th:src="@{/cadastro.js}"></script>
     </body>
 </html>
