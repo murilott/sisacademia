@@ -8,10 +8,9 @@
         <nav th:replace="layout :: menu"></nav>
 
         <main class="container">
-            <form th:action="@{/rotina/(inctreino)}" method="POST" th:object="${rotina}">
-
-                <input type="hidden" th:field="${rotina.id}">
-
+            <form th:action="@{/treino/(inctreino)}" method="POST" th:object="${treino}">
+                <input type="hidden" th:field="${treino.id}">
+                
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
@@ -30,7 +29,7 @@
                             </thead>
 
                             <tbody>
-                                <tr th:each="umTreino, stat : ${rotina.listaTreinos}">
+                                <tr th:each="umTreino, stat : ${listaTreinos}">
                                     <td th:text="${umTreino.exercicio?.nome}"></td>
                                     <input type="hidden" th:field="${rotina.listaTreinos[__${stat.index}__].exercicio.nome}">
                                     
@@ -56,7 +55,7 @@
 
                             <div class="form-group">
                                 <label for="exerc">Exercício:</label>
-                                <select class="form-select" id="exerc" th:field="${novoTreino.exercicio.nome}">
+                                <select class="form-select" id="exerc" th:field="${novoTreino.exercicio}">
                                     <option th:each="umExercicio : ${listaExercicios}"
                                         th:value="${umExercicio.nome}"
                                         th:text="${umExercicio.nome}">
@@ -87,11 +86,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- <button type="submit" name="save"
-                class="btn btn-primary">Enviar</button> -->
             </form>
         </main>
-
+        
         <footer th:include="layout :: footer"></footer>
     </body>
 </html>

@@ -115,6 +115,7 @@ public class RotinaController {
     }
     @PostMapping(params = "inctreino")
     public ModelAndView incluirTreino(Rotina rotina, Treino novoTreino, Exercicio exercicio){
+        // service.save(rotina);
         rotina.getListaTreinos().add(novoTreino);
         var listaUsuarios = usuarioService.getAll();
         var listaExercicios = exercicioService.getAll();
