@@ -97,15 +97,4 @@ public class RotinaController {
         dados.put("novoExercicio", new Exercicio());
         return new ModelAndView("rotina/form", dados);
     }
-    @PostMapping(params = "incexercicio")
-    public ModelAndView incluirExercicio(Rotina rotina, Exercicio exercicio){
-        exercicioService.save(exercicio);
-        var listaExercicios = exercicioService.getAll();
-        HashMap<String,Object> dados = new HashMap<>();
-        dados.put("rotina", rotina);
-        dados.put("listaExercicios", listaExercicios);
-        dados.put("novoTreino", new Treino());
-        dados.put("novoExercicio", new Exercicio());
-        return new ModelAndView("rotina/form", dados);
-    }
 }

@@ -8,65 +8,10 @@
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
 
-            <form th:action="@{/rotina/(incexercicio)}"
-                method="POST" th:object="${exercicio}">
-
-                <input type="hidden" th:field="*{id}">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Exercícios
-                        </h5>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Categoria</th>
-                                    <th>Dificuldade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="umExercicio, stat : ${listaExercicios}">
-                                    <td th:text="${umExercicio.nome}"></td>
-                                    <input type="hidden"
-                                        th:field="${listaExercicios[__${stat.index}__].nome}">
-                                        <td th:text="${umExercicio.nivelRecomendado}"></td>
-                                    <input type="hidden"
-                                        th:field="${listaExercicios[__${stat.index}__].nivelRecomendado}">
-                                        <td th:text="${umExercicio.categoria}"></td>
-                                    <input type="hidden"
-                                        th:field="${listaExercicios[__${stat.index}__].categoria}">
-                                </tr>
-                            </tbody>   
-                        </table>
-                        <div class="card">
-                            <h5 class="card-title">
-                                Novo Exercício
-                            </h5>
-                            <div class="form-group">
-                                <label for="txtnome">Nome:</label>
-                                <input type="text" th:field="${novoExercicio.nome}"
-                                    class="form-control" id="txtnome">       
-                            </div>
-                            <div class="form-group">
-                                <label for="txtcategoria">Categoria:</label>
-                                <input type="text" th:field="${novoExercicio.categoria}"
-                                    class="form-control" id="txtcategoria">       
-                            </div>
-                            <div class="form-group">
-                                <label for="txtnivelRecomendado">Dificuldade:</label>
-                                <input type="text" th:field="${novoExercicio.nivelRecomendado}"
-                                    class="form-control" id="txtnivelRecomendado">  
-                                    <button type="submit" name="incexercicio"
-                                    class="btn btn-primary">Adicionar Exercício</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
             <form th:action="@{/rotina/(inctreino)}"
                 method="POST" th:object="${rotina}">
 
-                <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:field="${rotina.id}">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
@@ -83,22 +28,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="umTreino, stat : *{listaTreinos}">
+                            <tr th:each="umTreino, stat : ${rotina.listaTreinos}">
                                 <td th:text="${umTreino.exercicio?.nome}"></td>
                                 <input type="hidden"
-                                    th:field="*{listaTreinos[__${stat.index}__].exercicio}">
+                                    th:field="${rotina.listaTreinos[__${stat.index}__].exercicio}">
                                 <input type="hidden"
-                                    th:field="*{listaTreinos[__${stat.index}__].serie}">
+                                    th:field="${rotina.listaTreinos[__${stat.index}__].serie}">
                                 <td th:text="${umTreino.serie}"></td>
                                 <td th:text="${umTreino.duracao}"></td>
                                 <input type="hidden"
-                                    th:field="*{listaTreinos[__${stat.index}__].duracao}">                 
+                                    th:field="${rotina.listaTreinos[__${stat.index}__].duracao}">                 
                                 <td th:text="${umTreino.repeticoes}"></td>
                                 <input type="hidden"
-                                    th:field="*{listaTreinos[__${stat.index}__].repeticoes}">
+                                    th:field="${rotina.listaTreinos[__${stat.index}__].repeticoes}">
                                     <td th:text="${umTreino.intensidade}"></td>
                                 <input type="hidden"
-                                    th:field="*{listaTreinos[__${stat.index}__].intensidade}">     
+                                    th:field="${rotina.listaTreinos[__${stat.index}__].intensidade}">     
                             </tr>
                         </tbody>
                     </table>
@@ -143,6 +88,7 @@
                 <button type="submit" name="save"
                 class="btn btn-primary">Enviar</button>
             </form>
+            
         </main>
         <footer th:include="layout :: footer"></footer>
     </body>
