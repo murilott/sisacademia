@@ -36,7 +36,7 @@ public class HomeController {
         dados.put("listaRotinas", listaRotinas);
         dados.put("listaUsuarios", listaUsuarios);
 
-        return new ModelAndView("home/index", dados);
+        return new ModelAndView("home/principal", dados);
     }
 
     @GetMapping("/{id}")

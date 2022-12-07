@@ -41,11 +41,15 @@ public class CadastroController {
 
         return new ModelAndView("cadastro/form", dados);    }
 
-    @PostMapping(params = "form")
-    public ModelAndView save(@Valid Usuario usuario, BindingResult bindingResult) {
+        @PostMapping(params = "form")
+        public ModelAndView save(@Valid Usuario usuario, BindingResult bindingResult) {
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("usuario", usuario);
-
+            
+        if ( bindingResult.hasErrors() ) {
+            return new ModelAndView("cadastro/form", dados);
+        }
+        
         LocalDate localDate = usuario.getDataNascimento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         int anoAtual = YearMonth.now().getYear();
@@ -61,9 +65,6 @@ public class CadastroController {
         }
         usuario.setIdade(idade);
 
-        if ( bindingResult.hasErrors() ) {
-            return new ModelAndView("cadastro/form", dados);
-        }
         
         service.save(usuario);
         

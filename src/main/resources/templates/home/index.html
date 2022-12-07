@@ -10,15 +10,12 @@
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
                 <header class="topo">
-                    <h1>Home</h1>
+                    <h1>Página de Usuário</h1>
                 </header>
                 <nav class="barra">
                     <tr th:each="umUsuario : ${listaUsuarios}">
                     <a th:href="@{'/cadastro/alterar/' + ${umUsuario.id}}" class="btn btn-info">Editar perfil</a>
                     </tr>
-                    <a class="btn btn-info" href="#">Alguma coisa</a>
-                    <a class="btn btn-info" href="#">Alguma coisa</a>
-                    
                 </nav>
                 <div class="usuario">
                     <table class="table" id="tabnomeusuario">
