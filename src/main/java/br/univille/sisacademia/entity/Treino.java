@@ -12,6 +12,7 @@ public class Treino {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String nome;
     private float duracao;
     private boolean repete;
     private int serie;
@@ -22,7 +23,7 @@ public class Treino {
     private Exercicio exercicio;
 
     public float calculaCaloriasExercicio() {
-        calGasto = (serie * repeticoes) * exercicio.getCategoria().getCaloriaMedia();
+        calGasto = (serie * repeticoes) * exercicio.getCaloriaMedia();
         return calGasto;
     }
 
@@ -31,6 +32,13 @@ public class Treino {
     }
     public void setId(long id) {
         this.id = id;
+    }
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     public float getDuracao() {
         return duracao;

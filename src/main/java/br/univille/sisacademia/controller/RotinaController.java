@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.univille.sisacademia.entity.Exercicio;
 import br.univille.sisacademia.entity.Rotina;
 import br.univille.sisacademia.entity.Treino;
+import br.univille.sisacademia.service.ExercicioService;
 import br.univille.sisacademia.service.RotinaService;
 import br.univille.sisacademia.service.TreinoService;
 import br.univille.sisacademia.service.UsuarioService;
@@ -30,13 +32,18 @@ public class RotinaController {
     @Autowired
     private TreinoService treinoService;
 
+    @Autowired
+    private ExercicioService exercicioService;
+
     @GetMapping
     public ModelAndView index(){
         var listaRotinas = service.getAll();
         var listaTreinos = treinoService.getAll();
+        var listaExercicios = exercicioService.getAll();
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("listaRotinas", listaRotinas);
         dados.put("listaTreinos", listaTreinos);
+        dados.put("listaExercicios", listaExercicios);
         return new ModelAndView("rotina/index", dados);
     }
 
@@ -44,9 +51,12 @@ public class RotinaController {
     public ModelAndView novo(){
         var rotina = new Rotina();
         var treino = new Treino();
+        var exercicio = new Exercicio();
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("rotina", rotina);
         dados.put("treino", treino);
+        dados.put("exercicio", exercicio);
+        dados.put("novoExercicio", new Exercicio());
         dados.put("novoTreino", new Treino());
 
         return new ModelAndView("rotina/form", dados);    
@@ -75,13 +85,16 @@ public class RotinaController {
         return new ModelAndView("redirect:/rotina");
     }
     @PostMapping(params = "inctreino")
-    public ModelAndView incluirTreino(Rotina rotina, Treino novoTreino){
+    public ModelAndView incluirTreino(Rotina rotina, Treino novoTreino, Exercicio exercicio){
         rotina.getListaTreinos().add(novoTreino);
         var listaUsuarios = usuarioService.getAll();
+        var listaExercicios = exercicioService.getAll();
         HashMap<String,Object> dados = new HashMap<>();
         dados.put("rotina", rotina);
         dados.put("listaUsuarios", listaUsuarios);
         dados.put("novoTreino", new Treino());
+        dados.put("listaExercicios", listaExercicios);
+        dados.put("novoExercicio", new Exercicio());
         return new ModelAndView("rotina/form", dados);
     }
 }
