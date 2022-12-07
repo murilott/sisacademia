@@ -1,0 +1,12 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url("./img/fundo-cadastro.webp");
+    font-size: 1rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;;
+}
