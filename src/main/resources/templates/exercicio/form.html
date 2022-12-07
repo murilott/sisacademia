@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+
+            <form th:action="@{/exercicio/(incexercicio)}"
+                method="POST" th:object="${exercicio}">
+
+                <input type="hidden" th:field="${exercicio.id}">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Exercícios
+                        </h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Categoria</th>
+                                    <th>Dificuldade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="umExercicio, stat : ${listaExercicios}">
+                                    <td th:text="${umExercicio.nome}"></td>
+                                    <!-- <input type="hidden"
+                                    th:field="*{listaExercicios[__${stat.index}__].nome}"> -->
+                                    
+                                    <td th:text="${umExercicio.nivelRecomendado}"></td>
+                                    <!-- <input type="hidden"
+                                    th:field="*{listaExercicios[__${stat.index}__].nivelRecomendado}"> -->
+                                    
+                                    <td th:text="${umExercicio.categoria}"></td>
+                                    <!-- <input type="hidden"
+                                    th:field="*{listaExercicios[__${stat.index}__].categoria}"> -->
+                                </tr>
+                            </tbody>   
+                        </table>
+                        <div class="card">
+                            <h5 class="card-title">
+                                Novo Exercício
+                            </h5>
+                            <div class="form-group">
+                                <label for="txtnome">Nome:</label>
+                                <input type="text" th:field="${novoExercicio.nome}"
+                                    class="form-control" id="txtnome">       
+                            </div>
+                            <div class="form-group">
+                                <label>Categoria:</label>
+                                <select class="form-select" th:field="${novoExercicio.categoria}">
+                                    <option value="vazio"></option>
+                                    <option value="Peito">Peito</option>
+                                    <option value="Ombro">Ombro</option>
+                                    <option value="Perna">Perna</option>
+                                    <option value="Tríceps">Tríceps</option>
+                                    <option value="Bíceps">Bíceps</option>
+                                    <option value="Abdômen">Abdômen</option>
+                                </select>  
+                            </div>
+                            <div class="form-group">
+                                <label>Dificuldade:</label>
+                                <select class="form-select" th:field="${novoExercicio.nivelRecomendado}">
+                                    <option value="vazio"></option>
+                                    <option value="Iniciante">Iniciante</option>
+                                    <option value="Intermediário">Intermediário</option>
+                                    <option value="Avançado">Avançado</option>
+                                </select>   
+                                <button type="submit" name="incexercicio"
+                                class="btn btn-primary">Adicionar Exercício</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            
+        </main>
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>
