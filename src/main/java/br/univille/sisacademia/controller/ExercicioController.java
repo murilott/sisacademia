@@ -36,6 +36,6 @@ public class ExercicioController {
         HashMap<String,Object> dados = new HashMap<>();
         dados.put("listaExercicios", listaExercicios);
         dados.put("novoExercicio", new Exercicio());
-        return new ModelAndView("exercicio/form", dados);
+        return new ModelAndView("redirect:/exercicio");
     }
 }
