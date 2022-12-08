@@ -37,13 +37,25 @@
                             <thead>
                                 <tr>
                                     <th>Treino</th>
+                                    <th>Séries</th>
+                                    <th>Repetições</th>
+                                    <th>Intensidade</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <tr th:each="umTreino, stat : ${novaRotina.listaTreinos}">
                                     <td th:text="${umTreino.exercicio?.nome}"></td>
-                                    <input type="hidden" th:field="${novaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"> -->
+                                    <input type="hidden" th:field="${novaRotina.listaTreinos[__${stat.index}__].exercicio.nome}">
+
+                                    <td th:text="${umTreino.serie}"></td>
+                                    <input type="hidden" th:field="${novaRotina.listaTreinos[__${stat.index}__].serie}">
+
+                                    <td th:text="${umTreino.repeticoes}"></td>
+                                    <input type="hidden" th:field="${novaRotina.listaTreinos[__${stat.index}__].repeticoes}">
+
+                                    <td th:text="${umTreino.Intensidade}"></td>
+                                    <input type="hidden" th:field="${novaRotina.listaTreinos[__${stat.index}__].Intensidade}">
                                 </tr>
                             </tbody>
                         </table>
@@ -69,8 +81,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- <button type="submit" name="save"
-                class="btn btn-primary">Enviar</button> -->
+                <button type="submit" name="save"
+                class="btn btn-primary">Enviar</button>
             </form>
         </main>
 
