@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+
+            <form th:action="@{/dieta}"
+                method="POST" th:object="${dieta}">
+
+                <input type="hidden" th:field="${dieta.id}">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Pratos
+                        </h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Período</th>
+                                    <th>Quantidade</th>
+                                    <th>Calorias</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="umPrato, stat : ${listaPratos}">
+                                    <td th:text="${umPrato.periodo}"></td>
+                                    <input type="hidden" th:field="*{listaPratos[_${stat.index}_].periodo}">
+
+                                <tr th:each="umPrato, stat : ${listaPratos}">
+                                    <td th:text="${umPrato.quantidade}"></td>
+                                    <input type="hidden" th:field="*{listaPratos[_${stat.index}_].quantidade}">
+                                
+                                <tr th:each="umPrato, stat : ${listaPratos}">
+                                    <td th:text="${umPrato.calorias}"></td>
+                                    <input type="hidden" th:field="*{listaPratos[_${stat.index}_].calorias}">
+
+                                    <td>
+                                        <button class="btn btn-danger"
+                                            type="submit"
+                                            name="removeitem"
+                                            th:value="_${stat.index}_">Remover</button>
+                                    </td>
+                                </tr>
+                            </tbody>   
+                        </table>
+                        <div class="card">
+                            <h5 class="card-title">
+                                Novo Prato
+                            </h5>
+                            <div class="form-group">
+                                <label>Período:</label>
+                                <select class="form-select" th:field="${novoPrato.periodo}">
+                                    <option value="vazio"></option>
+                                    <option value="cafe">Manhã</option>
+                                    <option value="almoco">Almoço</option>
+                                    <option value="lanche">Tarde</option>
+                                    <option value="janta">Janta</option>
+                                </select>  
+                            </div>
+                            <div class="form-group">
+                                <label for="txtquantidade">Quantidade:</label>
+                                <input type="text" th:field="${novoPrato.quantidade}"
+                                    class="form-control" id="txtquantidade">                   
+                            </div>
+                            <div class="form-group">
+                                <label for="txtcalorias">Calorias:</label>
+                                <input type="text" th:field="${novoPrato.calorias}"
+                                    class="form-control" id="txtcalorias">
+                                    <button type="submit" name="incdieta"
+                                    class="btn btn-primary">Adicionar Dieta</button>                   
+                            </div>
+                        </div>
+                        <a href="/dieta/novo" class="btn btn-info">Montar Dieta</a>
+                    </div>
+                </form>
+            
+        </main>
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>

@@ -35,6 +35,7 @@ public class ExercicioController {
     }
     @PostMapping(params = "incexercicio")
     public ModelAndView incluirExercicio(Exercicio exercicio){
+        exercicioService.save(exercicio);
         var listaExercicios = exercicioService.getAll();
         HashMap<String,Object> dados = new HashMap<>();
         dados.put("listaExercicios", listaExercicios);
