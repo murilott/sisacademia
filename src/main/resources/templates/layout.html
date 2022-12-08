@@ -15,6 +15,24 @@
             height: auto;
             max-width: 5%;
         }
+            .home {
+        transition: all 0.5s;
+        cursor: pointer;
+        }
+            .home:hover{
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+                .navbar-brand{
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+
+        .navbar-brand:hover{
+            -webkit-filter: drop-shadow(15px 10px 5px rgba(0,0,0,.5));
+            filter: drop-shadow(15px 10px 5px rgba(0,0,0,.5));
+        }
+
         </style>
     </head>
 
@@ -27,9 +45,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                <div class="home">
+                    <a class="nav-link active" aria-current="page" href="/home" >Home</a>
+                </div>
+                <div class="home">
                     <a class="nav-link active" href="/cadastro/novo">Cadastre-se</a>
+                </div>
+                <div class="home">
                     <a class="nav-link active" href="/cadastro">Selecionar usuário</a>
+                </div>
                     <!-- <a class="nav-link" href="/cidades">Cidades</a> -->
                     <!-- <a class="nav-link" href="/vendas">Vendas</a> -->
                 </div>

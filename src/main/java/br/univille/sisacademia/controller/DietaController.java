@@ -67,14 +67,4 @@ public class DietaController {
         service.delete(id);
         return new ModelAndView("redirect:/dieta");
     }
-    @PostMapping(params = "incdieta")
-    public ModelAndView incluirTreino(Dieta dieta, Prato novoPrato){
-        dieta.getListaPratos().add(novoPrato); 
-        var listaPratos = pratoService.getAll();
-        HashMap<String,Object> dados = new HashMap<>();
-        dados.put("dieta", dieta);
-        dados.put("listaPratos", listaPratos);
-        dados.put("novoPrato", new Prato());
-        return new ModelAndView("dieta/form", dados);
-    }
 }

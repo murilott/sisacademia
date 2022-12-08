@@ -6,18 +6,18 @@
 
     <body>
         <nav th:replace="layout :: menu"></nav>
+        
         <main class="container">
-
-            <form th:action="@{/exercicio}"
-                method="POST" th:object="${exercicio}">
-
+            <form th:action="@{/exercicio}" method="POST" th:object="${exercicio}">
                 <input type="hidden" th:field="${exercicio.id}">
+                
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
                             Exercícios
                         </h5>
-                        <table class="table">
+
+                        <table class="table" id="tabexercicio">
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -25,37 +25,34 @@
                                     <th>Dificuldade</th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 <tr th:each="umExercicio, stat : ${listaExercicios}">
                                     <td th:text="${umExercicio.nome}"></td>
-                                    <!-- <input type="hidden"
-                                    th:field="*{listaExercicios[__${stat.index}__].nome}"> -->
+                                    <!-- <input type="hidden" th:field="${listaExercicios[__${stat.index}__].nome}"> -->
                                     
                                     <td th:text="${umExercicio.nivelRecomendado}"></td>
-                                    <!-- <input type="hidden"
-                                    th:field="*{listaExercicios[__${stat.index}__].nivelRecomendado}"> -->
+                                    <!-- <input type="hidden" th:field="${listaExercicios[__${stat.index}__].nivelRecomendado}"> -->
                                     
                                     <td th:text="${umExercicio.categoria}"></td>
-                                    <!-- <input type="hidden"
-                                    th:field="*{listaExercicios[__${stat.index}__].categoria}"> -->
+                                    <!-- <input type="hidden" th:field="${listaExercicios[__${stat.index}__].categoria}"> -->
                                     <td>
-                                        <button class="btn btn-danger"
-                                            type="submit"
-                                            name="removeitem"
-                                            th:value="__${stat.index}__">Remover</button>
+                                        <a class="btn btn-danger js-delete" th:href="@{'/exercicio/delete/' + ${umExercicio.id}}">Excluir</a>
                                     </td>
                                 </tr>
-                            </tbody>   
+                            </tbody>  
                         </table>
+
                         <div class="card">
                             <h5 class="card-title">
                                 Novo Exercício
                             </h5>
+
                             <div class="form-group">
                                 <label for="txtnome">Nome:</label>
-                                <input type="text" th:field="${novoExercicio.nome}"
-                                    class="form-control" id="txtnome">       
+                                <input type="text" th:field="${novoExercicio.nome}" class="form-control" id="txtnome">       
                             </div>
+
                             <div class="form-group">
                                 <label>Categoria:</label>
                                 <select class="form-select" th:field="${novoExercicio.categoria}">
@@ -68,6 +65,7 @@
                                     <option value="Abdômen">Abdômen</option>
                                 </select>  
                             </div>
+
                             <div class="form-group">
                                 <label>Dificuldade:</label>
                                 <select class="form-select" th:field="${novoExercicio.nivelRecomendado}">
@@ -75,16 +73,19 @@
                                     <option value="Iniciante">Iniciante</option>
                                     <option value="Intermediário">Intermediário</option>
                                     <option value="Avançado">Avançado</option>
-                                </select>   
+                                </select> 
+
                                 <button type="submit" name="incexercicio"
                                 class="btn btn-primary">Adicionar Exercício</button>
                             </div>
                         </div>
-                        <a href="/rotina/novo" class="btn btn-info">Montar treino</a>
+                        <a href="/treino" class="btn btn-info">Montar treino</a>
                     </div>
-                </form>
-            
+                </div>
+            </form>
         </main>
+        
         <footer th:include="layout :: footer"></footer>
+        <script src="@{/exercicio/js}"></script>
     </body>
 </html>

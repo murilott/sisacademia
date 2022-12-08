@@ -1,6 +1,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 0.9rem;
+    background-image: url("./img/rotina.jpg");
+    background-size: 100%;
     max-width: 960px;
     margin: auto;
 }
@@ -8,6 +10,7 @@ body {
     border: 1px solid black;
     display: grid;
     padding: 10px;
+    background-color: white;
     text-align: center;
     grid-template:
     'topo topo'
