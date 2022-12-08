@@ -13,7 +13,7 @@
                 <input type="hidden" th:field="${rotina.id}">
 
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body">          
                         <h5 class="card-title">
                             Treinos
                         </h5>
@@ -44,7 +44,13 @@
                                     <input type="hidden" th:field="${rotina.listaTreinos[__${stat.index}__].repeticoes}">
 
                                     <td th:text="${umTreino.intensidade}"></td>
-                                    <input type="hidden" th:field="${rotina.listaTreinos[__${stat.index}__].intensidade}">    
+                                    <input type="hidden" th:field="${rotina.listaTreinos[__${stat.index}__].intensidade}"> 
+                                    <td>
+                                        <button class="btn btn-danger"
+                                            type="submit"
+                                            name="removetreino"
+                                            th:value="__${stat.index}__">Remover</button>
+                                    </td> 
                                 </tr>
                             </tbody>
                         </table>
