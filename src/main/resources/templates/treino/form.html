@@ -31,19 +31,19 @@
                             <tbody>
                                 <tr th:each="umTreino, stat : ${listaTreinos}">
                                     <td th:text="${umTreino.exercicio?.nome}"></td>
-                                    <input type="hidden" th:field="${rotina.listaTreinos[__${stat.index}__].exercicio.nome}">
+                                    <!-- <input type="hidden" th:field="${listaTreinos[__${stat.index}__].exercicio.nome}"> -->
                                     
                                     <td th:text="${umTreino.serie}"></td>
-                                    <input type="hidden" th:field="${rotina.listaTreinos[__${stat.index}__].serie}">
+                                    <!-- <input type="hidden" th:field="${listaTreinos[__${stat.index}__].serie}"> -->
 
-                                    <td th:text="${umTreino.duracao}"></td>
-                                    <input type="hidden" th:field="${rotina.listaTreinos[__${stat.index}__].duracao}">   
-                                                  
                                     <td th:text="${umTreino.repeticoes}"></td>
-                                    <input type="hidden" th:field="${rotina.listaTreinos[__${stat.index}__].repeticoes}">
+                                    <!-- <input type="hidden" th:field="${listaTreinos[__${stat.index}__].repeticoes}"> -->
+                                    
+                                    <td th:text="${umTreino.duracao}"></td>
+                                    <!-- <input type="hidden" th:field="${listaTreinos[__${stat.index}__].duracao}">    -->
 
                                     <td th:text="${umTreino.intensidade}"></td>
-                                    <input type="hidden" th:field="${rotina.listaTreinos[__${stat.index}__].intensidade}">    
+                                    <!-- <input type="hidden" th:field="${listaTreinos[__${stat.index}__].intensidade}">     -->
                                 </tr>
                             </tbody>
                         </table>
@@ -57,7 +57,7 @@
                                 <label for="exerc">Exercício:</label>
                                 <select class="form-select" id="exerc" th:field="${novoTreino.exercicio}">
                                     <option th:each="umExercicio : ${listaExercicios}"
-                                        th:value="${umExercicio.nome}"
+                                        th:value="${umExercicio.id}"
                                         th:text="${umExercicio.nome}">
                                     </option>
                                 </select>
@@ -75,13 +75,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="txtduracao">Duração:</label>
+                            <label for="txtduracao">Duração total(m):</label>
                             <input type="number" th:field="${novoTreino.duracao}" class="form-control" id="txtduracao">
                         </div>
 
                         <div class="form-group">
                             <label for="txtintensidade">Intensidade:</label>
                             <input type="text" th:field="${novoTreino.intensidade}" class="form-control" id="txtintensidade">
+                            
                             <button type="submit" name="inctreino" class="btn btn-primary">Adicionar Treino</button>
                         </div>
                     </div>

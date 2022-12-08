@@ -113,18 +113,18 @@ public class RotinaController {
         service.delete(id);
         return new ModelAndView("redirect:/rotina");
     }
-    @PostMapping(params = "inctreino")
-    public ModelAndView incluirTreino(Rotina rotina, Treino novoTreino, Exercicio exercicio){
-        // service.save(rotina);
-        rotina.getListaTreinos().add(novoTreino);
-        var listaUsuarios = usuarioService.getAll();
-        var listaExercicios = exercicioService.getAll();
-        HashMap<String,Object> dados = new HashMap<>();
-        dados.put("rotina", rotina);
-        dados.put("listaUsuarios", listaUsuarios);
-        dados.put("novoTreino", new Treino());
-        dados.put("listaExercicios", listaExercicios);
-        dados.put("novoExercicio", new Exercicio());
-        return new ModelAndView("rotina/form", dados);
-    }
+    // @PostMapping(params = "inctreino")
+    // public ModelAndView incluirTreino(Rotina rotina, Treino novoTreino, Exercicio exercicio){
+    //     // service.save(rotina);
+    //     rotina.getListaTreinos().add(novoTreino);
+    //     var listaUsuarios = usuarioService.getAll();
+    //     var listaExercicios = exercicioService.getAll();
+    //     HashMap<String,Object> dados = new HashMap<>();
+    //     dados.put("rotina", rotina);
+    //     dados.put("listaUsuarios", listaUsuarios);
+    //     dados.put("novoTreino", new Treino());
+    //     dados.put("listaExercicios", listaExercicios);
+    //     dados.put("novoExercicio", new Exercicio());
+    //     return new ModelAndView("rotina/form", dados);
+    // }
 }
