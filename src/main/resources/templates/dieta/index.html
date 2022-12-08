@@ -3,28 +3,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
     <head th:include="layout :: head"></head>
-
+    <link rel="stylesheet" href="/dieta.css">
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
+            <header class="topo">
+                <h1>Dieta</h1>
+            </header>
+            <div class="listadietas">
+                <a href="/dieta/novo" class="btn btn-info">Criar Dieta</a>
+            </div>
 
-            <a href="/dieta/novo" class="btn btn-primary">Novo</a>
-            <table class="table" id="tabalimentos">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nome</th>
-                        <th>Imagem</th>
-                        <th>Porção</th>
-                        <th>Calorias</th>
-                        <th>Categoria</th>
-                        <th>Alergias</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-            </table>
+            <div class="infodietas">
+                Informações da dieta
+            </div>       
         </main>
         <footer th:include="layout :: footer"></footer>
     </body>

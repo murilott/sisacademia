@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.univille.sisacademia.entity.Exercicio;
+//import br.univille.sisacademia.entity.Exercicio;
 import br.univille.sisacademia.entity.Treino;
 import br.univille.sisacademia.service.ExercicioService;
 import br.univille.sisacademia.service.TreinoService;
