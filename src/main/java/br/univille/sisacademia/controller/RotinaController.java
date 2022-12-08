@@ -49,7 +49,7 @@ public class RotinaController {
     }
 
     @GetMapping("/novo")
-    public ModelAndView novo(){
+    public ModelAndView novoRotina(){
         var rotina = new Rotina();
         var treino = new Treino();
         var exercicio = new Exercicio();
@@ -66,7 +66,33 @@ public class RotinaController {
         dados.put("listaTreinos", listaTreinos);
         dados.put("listaExercicios", listaExercicios);
 
+        dados.put("listaRotinas", listaRotinas);
+        dados.put("listaTreinos", listaTreinos);
+        dados.put("listaExercicios", listaExercicios);
+
         return new ModelAndView("rotina/form", dados);    
+    }
+
+    @GetMapping("/treino/novo")
+    public ModelAndView novoTreino(){
+        var treino = new Treino();
+        var listaTreinos = treinoService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("treino", treino);
+        dados.put("listaTreinos", listaTreinos);
+
+        return new ModelAndView("treino/form", dados);    
+    }
+
+    @GetMapping("/exercicio/novo")
+    public ModelAndView novoExercicio(){
+        var exercicio = new Exercicio();
+        var listaExercicios = exercicioService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("exercicio", exercicio);
+        dados.put("listaExercicios", listaExercicios);
+
+        return new ModelAndView("exercicio/form", dados);    
     }
 
     @PostMapping(params = "form")

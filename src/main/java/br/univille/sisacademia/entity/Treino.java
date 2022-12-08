@@ -1,5 +1,6 @@
 package br.univille.sisacademia.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Treino {
     private int repeticoes;
     private String intensidade;
     private float calGasto;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     private Exercicio exercicio;
 
     public float calculaCaloriasExercicio() {
