@@ -8,7 +8,7 @@
         <nav th:replace="layout :: menu"></nav>
 
         <main class="container">
-            <form th:action="@{/rotina/(inctreinorotina)}" method="POST" th:object="${novaRotina}">
+            <form th:action="@{/rotina/(form)}" method="POST" th:object="${novaRotina}">
 
                 <input type="hidden" th:field="${novaRotina.id}">
 
@@ -81,8 +81,8 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" name="save"
-                class="btn btn-primary">Enviar</button>
+
+                <button type="submit" name="save" class="btn btn-primary">Salvar Rotina</button>
             </form>
         </main>
 

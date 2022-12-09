@@ -42,10 +42,13 @@ public class RotinaController {
         var listaRotinas = service.getAll();
         var listaTreinos = treinoService.getAll();
         var listaExercicios = exercicioService.getAll();
+
         HashMap<String, Object> dados = new HashMap<>();
+
         dados.put("listaRotinas", listaRotinas);
         dados.put("listaTreinos", listaTreinos);
         dados.put("listaExercicios", listaExercicios);
+        
         return new ModelAndView("rotina/index", dados);
     }
 
@@ -65,6 +68,13 @@ public class RotinaController {
         dados.put("listaExercicios", listaExercicios);
 
         return new ModelAndView("rotina/form", dados);
+    }
+
+    @PostMapping(params = "save")
+    public ModelAndView save(Rotina rotina, RotinaDTO rotinaDTO) {
+        service.save(rotina, rotinaDTO);
+
+        return new ModelAndView("redirect:/rotina");
     }
 
     @PostMapping(params = "inctreinorotina")
@@ -109,12 +119,7 @@ public class RotinaController {
     // return new ModelAndView("exercicio/form", dados);
     // }
 
-    // @PostMapping(params = "form")
-    // public ModelAndView save(Rotina rotina, BindingResult bindingResult) {
-    // service.save(rotina);
-
-    // return new ModelAndView("redirect:/rotina");
-    // }
+    
 
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id) {

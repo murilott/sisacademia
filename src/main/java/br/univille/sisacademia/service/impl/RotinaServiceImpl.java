@@ -34,8 +34,16 @@ public class RotinaServiceImpl implements RotinaService {
             rotina.setDataInicio(rotinaDTO.getDataInicio());
             
             return repositorio.save(rotina);
-        } else
-            return repositorio.save(rotina);
+        } else {
+            var novaRotina = new Rotina();
+            novaRotina.setNome(rotinaDTO.getNome());
+            novaRotina.setListaTreinos((ArrayList)rotinaDTO.getListaTreinos());
+            novaRotina.setTempo(rotinaDTO.getTempo());
+            novaRotina.setCalorias(rotinaDTO.getCalorias());
+            novaRotina.setDataInicio(rotinaDTO.getDataInicio());
+
+            return repositorio.save(novaRotina);
+        }
 
         // procurar o id, ver se existe o objeto, se existe atualizar, se n existe, criar
         // passar os dados do DTO para a entidade padrão copiando os dados, menos o treinoSelecionado
