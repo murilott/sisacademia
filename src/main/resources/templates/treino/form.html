@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
     <head th:include="layout :: head"></head>
+    <link rel="stylesheet" href="cinza.css">
 
     <body>
         <nav th:replace="layout :: menu"></nav>
@@ -17,7 +18,7 @@
                             Treinos
                         </h5>
 
-                        <table class="table">
+                        <table class="table" id="tabtreino">
                             <thead>
                                 <tr>
                                     <th>Exercício</th>
@@ -44,6 +45,9 @@
 
                                     <td th:text="${umTreino.intensidade}"></td>
                                     <!-- <input type="hidden" th:field="${listaTreinos[__${stat.index}__].intensidade}">     -->
+                                    <td>
+                                        <a class="btn btn-danger js-delete" th:href="@{'/treino/delete/' + ${umTreino.id}}">Excluir</a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -75,17 +79,23 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="txtduracao">Duração total(m):</label>
+                            <label for="txtduracao">Duração total (seg):</label>
                             <input type="number" th:field="${novoTreino.duracao}" class="form-control" id="txtduracao">
                         </div>
 
                         <div class="form-group">
-                            <label for="txtintensidade">Intensidade:</label>
-                            <input type="text" th:field="${novoTreino.intensidade}" class="form-control" id="txtintensidade">
-                            
+                            <label>Intensidade:</label>
+                            <select class="form-select" th:field="${novoTreino.intensidade}">
+                                <option value=""></option>
+                                <option value="Leve">Leve</option>
+                                <option value="Moderada">Moderada</option>
+                                <option value="Pesada">Pesada</option>
+                                <option value="Máxima">Máxima</option>
+                            </select>              
                             <button type="submit" name="inctreino" class="btn btn-primary">Adicionar Treino</button>
                         </div>
                     </div>
+                    <a href="/rotina" class="btn btn-info">Confirmar</a>
                 </div>
             </form>
         </main>

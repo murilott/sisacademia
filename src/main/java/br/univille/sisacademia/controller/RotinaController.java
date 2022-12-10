@@ -119,8 +119,6 @@ public class RotinaController {
     // return new ModelAndView("exercicio/form", dados);
     // }
 
-    
-
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id) {
         var umaRotina = service.findById(id);
@@ -135,5 +133,4 @@ public class RotinaController {
         service.delete(id);
         return new ModelAndView("redirect:/rotina");
     }
-
 }

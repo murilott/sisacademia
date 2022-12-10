@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Id;
@@ -21,8 +20,7 @@ public class Alimento {
     private String imagem;
     private float porcao;
     private float calPorcao;
-    @ManyToOne
-    private CategoriaAlimento categoria;
+    private String categoria;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Alergia> listaAlergias = new ArrayList<Alergia>();
 
@@ -41,6 +39,13 @@ public class Alimento {
     public String getImagem() {
         return imagem;
     }
+    
+    public String getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
@@ -55,12 +60,6 @@ public class Alimento {
     }
     public void setCalPorcao(float calPorcao) {
         this.calPorcao = calPorcao;
-    }
-    public CategoriaAlimento getCategoria() {
-        return categoria;
-    }
-    public void setCategoria(CategoriaAlimento categoria) {
-        this.categoria = categoria;
     }
     public List<Alergia> getListaAlergias() {
         return listaAlergias;

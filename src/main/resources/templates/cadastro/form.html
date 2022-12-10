@@ -4,7 +4,7 @@
       
     <head th:include="layout :: head"></head>
 
-    <link rel="stylesheet" href="/cadastro.css">
+    <link rel="stylesheet" href="/cinza.css">
 
     <body>
         <nav th:replace="layout :: menu"></nav>
@@ -62,7 +62,7 @@
                     class="alert alert-danger"></p>
                 </div>
                 <div class="form-group">
-                    <label for="txtaltura">Altura(m):</label>
+                    <label for="txtaltura">Altura (m):</label>
                     <input type="number" step="any" th:field="*{altura}"
                         class="form-control" id="txtaltura">
                     <p th:if="${#fields.hasErrors('altura')}"
@@ -70,7 +70,7 @@
                     class="alert alert-danger"></p>
                 </div>
                 <div class="form-group">
-                    <label for="txtpeso">Peso(kg):</label>
+                    <label for="txtpeso">Peso (kg):</label>
                     <input type="number" step="any" th:field="*{peso}"
                         class="form-control" id="txtpeso">
                     <p th:if="${#fields.hasErrors('peso')}"

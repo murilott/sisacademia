@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body">          
                         <h5 class="card-title">
                             Treinos da Rotina
                         </h5>
@@ -54,8 +54,14 @@
                                     <td th:text="${umTreino.repeticoes}"></td>
                                     <input type="hidden" th:field="${novaRotina.listaTreinos[__${stat.index}__].repeticoes}">
 
-                                    <td th:text="${umTreino.Intensidade}"></td>
-                                    <input type="hidden" th:field="${novaRotina.listaTreinos[__${stat.index}__].Intensidade}">
+                                    <td th:text="${umTreino.intensidade}"></td>
+                                    <input type="hidden" th:field="${novaRotina.listaTreinos[__${stat.index}__].intensidade}"> 
+                                    <td>
+                                        <button class="btn btn-danger"
+                                            type="submit"
+                                            name="removetreino"
+                                            th:value="__${stat.index}__">Remover</button>
+                                    </td> 
                                 </tr>
                             </tbody>
                         </table>

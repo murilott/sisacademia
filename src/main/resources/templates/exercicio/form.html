@@ -3,12 +3,12 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
     <head th:include="layout :: head"></head>
-
+    <link rel="stylesheet" href="cinza.css">
     <body>
         <nav th:replace="layout :: menu"></nav>
-
+        
         <main class="container">
-            <form th:action="@{/exercicio/(incexercicio)}" method="POST" th:object="${exercicio}">
+            <form th:action="@{/exercicio}" method="POST" th:object="${exercicio}">
                 <input type="hidden" th:field="${exercicio.id}">
                 
                 <div class="card">
@@ -17,7 +17,7 @@
                             Exercícios
                         </h5>
 
-                        <table class="table">
+                        <table class="table" id="tabexercicio">
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -36,6 +36,9 @@
                                     
                                     <td th:text="${umExercicio.categoria}"></td>
                                     <!-- <input type="hidden" th:field="${listaExercicios[__${stat.index}__].categoria}"> -->
+                                    <td>
+                                        <a class="btn btn-danger js-delete" th:href="@{'/exercicio/delete/' + ${umExercicio.id}}">Excluir</a>
+                                    </td>
                                 </tr>
                             </tbody>  
                         </table>
@@ -76,11 +79,13 @@
                                 class="btn btn-primary">Adicionar Exercício</button>
                             </div>
                         </div>
+                        <a href="/treino" class="btn btn-info">Montar treino</a>
                     </div>
                 </div>
             </form>
         </main>
         
         <footer th:include="layout :: footer"></footer>
+        <script src="@{/exercicio/js}"></script>
     </body>
 </html>
