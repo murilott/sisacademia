@@ -33,7 +33,9 @@
                             <td th:text="${umaRotina.nome}"></td>
                             <!-- <input type="hidden" th:field="${umaRotina.nome}"> -->
 
-                            <td th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"></td>
+                            <td th:text="${umaRotina.retornaTreinos()}"></td>
+
+                            <!-- <td th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"></td> -->
 
                             <!-- <td th:each="umaRotina, stat : ${listaRotinas}"
                                 th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio}"></td> -->

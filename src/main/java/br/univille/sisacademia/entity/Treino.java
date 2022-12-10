@@ -21,6 +21,7 @@ public class Treino {
     private int repeticoes;
     private String intensidade;
     private float calGasto;
+    // @ManyToOne
     @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.EAGER)
     private Exercicio exercicio;
 

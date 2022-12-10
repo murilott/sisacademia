@@ -26,9 +26,15 @@ public class RotinaServiceImpl implements RotinaService {
     public Rotina save(Rotina rotina, RotinaDTO rotinaDTO) {
         var resultado = repositorio.findById(rotinaDTO.getId());
 
+        // return repositorio.save(rotina);
         if ( resultado.isPresent() ) {
             rotina.setNome(rotinaDTO.getNome());
-            rotina.setListaTreinos((ArrayList)rotinaDTO.getListaTreinos());
+            // rotina.setListaTreinos((ArrayList)rotinaDTO.getListaTreinos());
+            for ( int i=0; i<rotinaDTO.getListaTreinos().size(); i++ ) {
+                var exercDTO = rotinaDTO.getListaTreinos().get(i).getExercicio();
+
+                rotina.getListaTreinos().get(i).setExercicio(exercDTO);
+            }
             rotina.setTempo(rotinaDTO.getTempo());
             rotina.setCalorias(rotinaDTO.getCalorias());
             rotina.setDataInicio(rotinaDTO.getDataInicio());
@@ -37,17 +43,18 @@ public class RotinaServiceImpl implements RotinaService {
         } else {
             var novaRotina = new Rotina();
             novaRotina.setNome(rotinaDTO.getNome());
-            novaRotina.setListaTreinos((ArrayList)rotinaDTO.getListaTreinos());
+            // novaRotina.setListaTreinos((ArrayList)rotinaDTO.getListaTreinos());
+            for ( int i=0; i<rotinaDTO.getListaTreinos().size(); i++ ) {
+                var treinoDTO = rotinaDTO.getListaTreinos().get(i);
+
+                novaRotina.getListaTreinos().add(treinoDTO);
+            }
             novaRotina.setTempo(rotinaDTO.getTempo());
             novaRotina.setCalorias(rotinaDTO.getCalorias());
             novaRotina.setDataInicio(rotinaDTO.getDataInicio());
 
             return repositorio.save(novaRotina);
         }
-
-        // procurar o id, ver se existe o objeto, se existe atualizar, se n existe, criar
-        // passar os dados do DTO para a entidade padrão copiando os dados, menos o treinoSelecionado
-        // return repositorio.save(rotina);
     }
 
     @Override
