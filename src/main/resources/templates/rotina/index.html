@@ -18,6 +18,61 @@
 
             <div class="inforotina">
                 Informações da rotina
+                <br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>nome</th>
+                            <th>lista de treinos</th>
+                            <th>Tempo total</th>
+                            <th>Calorias</th>
+                            <th>Data de inicio</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="umaRotina, stat : ${listaRotinas}">
+                            <td th:text="${umaRotina.nome}"></td>
+                            <!-- <input type="hidden" th:field="${umaRotina.nome}"> -->
+
+                            <td th:text="${umaRotina.retornaTreinos()}"></td>
+
+                            <!-- <td th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"></td> -->
+
+                            <!-- <td th:each="umaRotina, stat : ${listaRotinas}"
+                                th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio}"></td> -->
+
+                            <!-- <td th:each="umaRotina, stat : ${listaRotinas}"
+                                th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio}">
+                            </td> -->
+
+                            <!-- <th:block th:each="umaRotina, stat : ${listaRotinas}">
+                                <td th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"></td>
+                            </th:block> -->
+
+                            <!-- <td th:each="umaRotina, stat : ${listaRotinas}">
+                                <p th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"></p>
+                            </td> -->
+                        
+                            <!-- <td>
+                                <th:block th:each="umaRotina, stat : ${listaRotinas}">
+                                    <p th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"></p>
+                                </th:block>
+                            </td> -->
+
+                            <!-- <input type="hidden" th:field="${umaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"> -->
+
+                            <td th:text="${umaRotina.tempo}"></td>
+                            <!-- <input type="hidden" th:field="${novaRotina.tempo}"> -->
+
+                            <td th:text="${umaRotina.calorias}"></td>
+                            <!-- <input type="hidden" th:field="${novaRotina.calorias}"> -->
+
+                            <td th:text="${umaRotina.dataInicio}"></td>
+                            <!-- <input type="hidden" th:field="${novaRotina.dataInicio}"> -->
+                        </tr>
+                    </tbody>
+                </table>
             </div>       
         </main>
         <footer th:include="layout :: footer"></footer>

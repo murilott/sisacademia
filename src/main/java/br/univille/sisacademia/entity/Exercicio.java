@@ -13,7 +13,7 @@ public class Exercicio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    private String imagem;
+    // private String imagem;
     private String nivelRecomendado;
     //@ManyToOne
     //private CategoriaExercicio categoria;
@@ -44,12 +44,12 @@ public class Exercicio {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public String getImagem() {
-        return imagem;
-    }
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
+    // public String getImagem() {
+    //     return imagem;
+    // }
+    // public void setImagem(String imagem) {
+    //     this.imagem = imagem;
+    // }
     public String getNivelRecomendado() {
         return nivelRecomendado;
     }
