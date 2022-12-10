@@ -16,13 +16,14 @@ import br.univille.sisacademia.dto.RotinaDTO;
 import br.univille.sisacademia.entity.Exercicio;
 import br.univille.sisacademia.entity.Rotina;
 import br.univille.sisacademia.entity.Treino;
+import br.univille.sisacademia.entity.Usuario;
 import br.univille.sisacademia.service.ExercicioService;
 import br.univille.sisacademia.service.RotinaService;
 import br.univille.sisacademia.service.TreinoService;
 import br.univille.sisacademia.service.UsuarioService;
 
 @Controller
-@RequestMapping("/rotina")
+@RequestMapping("/rotina/{user_id}")
 public class RotinaController {
 
     @Autowired
@@ -37,14 +38,18 @@ public class RotinaController {
     @Autowired
     private ExercicioService exercicioService;
 
+    
     @GetMapping
-    public ModelAndView index() {
+    public ModelAndView index(@PathVariable("user_id") long user_id) {
+        var usuarioAtual = usuarioService.findById(user_id);
+
         var listaRotinas = service.getAll();
         var listaTreinos = treinoService.getAll();
         var listaExercicios = exercicioService.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
 
+        dados.put("usuarioAtual", usuarioAtual);
         dados.put("listaRotinas", listaRotinas);
         dados.put("listaTreinos", listaTreinos);
         dados.put("listaExercicios", listaExercicios);
@@ -53,7 +58,7 @@ public class RotinaController {
     }
 
     @GetMapping("/novo")
-    public ModelAndView novoRotina() {
+    public ModelAndView novoRotina(@PathVariable("user_id") long id, Long user_id) {
         var novaRotina = new RotinaDTO();
         var listaRotinas = service.getAll();
         var listaTreinos = treinoService.getAll();
@@ -70,15 +75,33 @@ public class RotinaController {
         return new ModelAndView("rotina/form", dados);
     }
 
+    @GetMapping("/selecionar/{id}")
+    public ModelAndView selecionarRotina(@PathVariable("user_id") long id, Long user_id) {
+        var novaRotina = new RotinaDTO();
+        var listaRotinas = service.getAll();
+        var listaTreinos = treinoService.getAll();
+        var listaExercicios = exercicioService.getAll();
+
+        HashMap<String, Object> dados = new HashMap<>();
+
+        dados.put("novaRotina", novaRotina);
+        dados.put("novoTreino", new Treino());
+        dados.put("listaRotinas", listaRotinas);
+        dados.put("listaTreinos", listaTreinos);
+        dados.put("listaExercicios", listaExercicios);
+
+        return new ModelAndView("redirect:/home/{id}", dados);
+    }
+
     @PostMapping(params = "save")
-    public ModelAndView save(Rotina rotina, RotinaDTO rotinaDTO) {
+    public ModelAndView save(@PathVariable("user_id") long user_id, Rotina rotina, RotinaDTO rotinaDTO) {
         service.save(rotina, rotinaDTO);
 
-        return new ModelAndView("redirect:/rotina");
+        return new ModelAndView("redirect:/rotina/{user_id}");
     }
 
     @PostMapping(params = "inctreinorotina")
-    public ModelAndView incluirTreino(RotinaDTO rotina) {
+    public ModelAndView incluirTreino(@PathVariable("user_id") long user_id, RotinaDTO rotina) {
         rotina.getListaTreinos().add(rotina.getTreinoSelecionado());
 
         var listaTreinos = treinoService.getAll();
@@ -96,28 +119,6 @@ public class RotinaController {
 
         return new ModelAndView("rotina/form", dados);
     }
-
-    // @GetMapping("/treino/novo")
-    // public ModelAndView novoTreino(){
-    // var treino = new Treino();
-    // var listaTreinos = treinoService.getAll();
-    // HashMap<String, Object> dados = new HashMap<>();
-    // dados.put("treino", treino);
-    // dados.put("listaTreinos", listaTreinos);
-
-    // return new ModelAndView("treino/form", dados);
-    // }
-
-    // @GetMapping("/exercicio/novo")
-    // public ModelAndView novoExercicio(){
-    // var exercicio = new Exercicio();
-    // var listaExercicios = exercicioService.getAll();
-    // HashMap<String, Object> dados = new HashMap<>();
-    // dados.put("exercicio", exercicio);
-    // dados.put("listaExercicios", listaExercicios);
-
-    // return new ModelAndView("exercicio/form", dados);
-    // }
 
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id) {

@@ -50,11 +50,13 @@ public class TreinoController {
         dados.put("listaExercicios", listaExercicios);
         return new ModelAndView("redirect:/treino");
     }
+
     @GetMapping("/delete/{id}")
     public ModelAndView deletar(@PathVariable("id") long id) {
         treinoService.delete(id);
         return new ModelAndView("redirect:/treino");
     }
+    
     @PostMapping(params = "removetreino")
     public ModelAndView removerItem(@RequestParam("removetreino") int index, Treino treino){
         treinoService.delete(index);

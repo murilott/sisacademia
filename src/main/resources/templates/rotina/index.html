@@ -11,7 +11,9 @@
                 <h1>Rotina</h1>
             </header>
             <div class="listarotinas">
-                <a href="/exercicio" class="btn btn-info">Criar Rotina</a>
+                <!-- <a th:href="@{'/rotina/novo/' + ${usuarioAtual.id}}" class="btn btn-info">Criar Rotina</a> -->
+                <!-- <a th:href="@{${usuarioAtual.id} + '/rotina/novo/' + ${usuarioAtual.id}}" class="btn btn-info">Criar Rotina</a> -->
+                <a th:href="@{${usuarioAtual.id} + '/novo'}" class="btn btn-info">Criar Rotina</a>
                 <a href="/exercicio" class="btn btn-info">Criar Exercício</a>
                 <a href="/treino" class="btn btn-info">Criar Treino</a>               
             </div>
@@ -22,7 +24,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>nome</th>
+                            <th>Nome</th>
                             <th>lista de treinos</th>
                             <th>Tempo total</th>
                             <th>Calorias</th>
@@ -32,6 +34,11 @@
 
                     <tbody>
                         <tr th:each="umaRotina, stat : ${listaRotinas}">
+                            <td>
+                                <!-- PEGANDO O ID DA ROTINA!! -->
+                                <a th:href="@{'/rotina/selecionar/' + ${umaRotina.id}} " class="btn btn-info">Selecionar Rotina</a>
+                            </td>
+
                             <td th:text="${umaRotina.nome}"></td>
                             <!-- <input type="hidden" th:field="${umaRotina.nome}"> -->
 

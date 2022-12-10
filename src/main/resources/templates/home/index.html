@@ -72,8 +72,10 @@
                         </tbody>  
                     </table>
                 </div>
-                <div class="rotina">
-                    <a class="btn btn-info" href="/rotina">Adicionar Rotina</a>
+                <div class="rotina" >
+                    <th:block th:each="umUsuario : ${listaUsuarios}">
+                        <a class="btn btn-info" th:href="@{'/rotina/' + ${umUsuario.id}}">Adicionar Rotina</a>
+                    </th:block>
                 </div>
                 <div class="dieta">
                     <a class="btn btn-info" href="/dieta">Adicionar Dieta</a>
