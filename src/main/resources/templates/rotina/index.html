@@ -35,8 +35,7 @@
                     <tbody>
                         <tr th:each="umaRotina, stat : ${listaRotinas}">
                             <td>
-                                <!-- PEGANDO O ID DA ROTINA!! -->
-                                <a th:href="@{'/rotina/selecionar/' + ${umaRotina.id}} " class="btn btn-info">Selecionar Rotina</a>
+                                <a th:href="@{${usuarioAtual.id} + '/selecionar/' + ${umaRotina.id}} " class="btn btn-info">Selecionar Rotina</a>
                             </td>
 
                             <td th:text="${umaRotina.nome}"></td>

@@ -75,22 +75,14 @@ public class RotinaController {
         return new ModelAndView("rotina/form", dados);
     }
 
-    @GetMapping("/selecionar/{id}")
-    public ModelAndView selecionarRotina(@PathVariable("user_id") long id, Long user_id) {
-        var novaRotina = new RotinaDTO();
-        var listaRotinas = service.getAll();
-        var listaTreinos = treinoService.getAll();
-        var listaExercicios = exercicioService.getAll();
+    @GetMapping("/selecionar/{rotina_id}")
+    public ModelAndView selecionarRotina(@PathVariable("user_id") Long user_id, @PathVariable("rotina_id") Long rotina_id) {
+        var umUsuario = usuarioService.findById(user_id);
 
-        HashMap<String, Object> dados = new HashMap<>();
+        umUsuario.setRotinaAtual(service.findById(rotina_id));
+        usuarioService.save(umUsuario);
 
-        dados.put("novaRotina", novaRotina);
-        dados.put("novoTreino", new Treino());
-        dados.put("listaRotinas", listaRotinas);
-        dados.put("listaTreinos", listaTreinos);
-        dados.put("listaExercicios", listaExercicios);
-
-        return new ModelAndView("redirect:/home/{id}", dados);
+        return new ModelAndView("redirect:/home/{user_id}");
     }
 
     @PostMapping(params = "save")
