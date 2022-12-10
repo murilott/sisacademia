@@ -76,7 +76,9 @@
                     <th:block th:each="umUsuario : ${listaUsuarios}">
                         <a class="btn btn-info" th:href="@{'/rotina/' + ${umUsuario.id}}">Adicionar Rotina</a>
                         <tr>
+                            <th:block th:if="${umUsuario.rotinaAtual}"</th:block>
                             <p th:text="${umUsuario.rotinaAtual.nome}"></td>
+                            </th:block>
                         </tr>
                     </th:block>
                 </div>
