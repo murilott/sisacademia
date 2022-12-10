@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+    <head th:include="layout :: head"></head>
+    <link rel="stylesheet" href="cinza.css">
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+
+            <form th:action="@{/prato}"
+                method="POST" th:object="${prato}">
+
+                <input type="hidden" th:field="${prato.id}">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Pratos
+                        </h5>
+                        <table class="table" id="tabprato">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Período</th>
+                                    <th>Porção</th>
+                                    <th>Calorias</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="umPrato, stat : ${listaPratos}">
+                        
+                                    <td th:text="${umPrato.nome}"></td>
+                                    <!-- <input type="hidden" th:field="*{listaPratos[__${stat.index}__].quantidade}"> -->
+
+                                    <td th:text="${umPrato.periodo}"></td>
+                                    <!-- <input type="hidden" th:field="*{listaPratos[__${stat.index}__].periodo}"> -->
+
+                                    <td th:text="${umPrato.quantidade}"></td>
+                                    <!-- <input type="hidden" th:field="*{listaPratos[__${stat.index}__].quantidade}"> -->
+                                
+                                    <td th:text="${umPrato.calorias}"></td>
+                                    <!-- <input type="hidden" th:field="*{listaPratos[__${stat.index}__].calorias}"> -->
+                                    <td>
+                                        <a class="btn btn-danger js-delete" th:href="@{'/prato/delete/' + ${umPrato.id}}">Excluir</a>
+                                    </td>
+                                </tr>
+                            </tbody>   
+                        </table>
+                        <div class="card">
+                            <h5 class="card-title">
+                                Novo Prato
+                            </h5>
+                            <div class="form-group">
+                                <label for="txtnome">Nome:</label>
+                                <input type="text" th:field="${novoPrato.nome}"
+                                    class="form-control" id="txtnome">                   
+                            </div>
+                            <div class="form-group">
+                                <label>Período:</label>
+                                <select class="form-select" th:field="${novoPrato.periodo}">
+                                    <option value="vazio"></option>
+                                    <option value="Manhã">Manhã</option>
+                                    <option value="Almoço">Almoço</option>
+                                    <option value="Lanche">Tarde</option>
+                                    <option value="Janta">Janta</option>
+                                </select>  
+                            </div>
+                            <div class="form-group">
+                                <label for="txtquantidade">Porção (g):</label>
+                                <input type="text" th:field="${novoPrato.quantidade}"
+                                    class="form-control" id="txtquantidade">                   
+                            </div>
+                            <div class="form-group">
+                                <label for="txtcalorias">Calorias:</label>
+                                <input type="text" th:field="${novoPrato.calorias}"
+                                    class="form-control" id="txtcalorias">
+                                    <button type="submit" name="incprato"
+                                    class="btn btn-primary">Adicionar Dieta</button>                   
+                            </div>
+                        </div>
+                        <a href="/dieta" class="btn btn-info">Confirmar</a>
+                    </div>
+                </form>
+            
+        </main>
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>

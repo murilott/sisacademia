@@ -12,11 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.sisacademia.entity.Dieta;
+import br.univille.sisacademia.entity.Prato;
 import br.univille.sisacademia.service.DietaService;
+import br.univille.sisacademia.service.PratoService;
 
 @Controller
 @RequestMapping("/dieta")
 public class DietaController {
+
+    @Autowired
+    private PratoService pratoService;
 
     @Autowired
     private DietaService service;
@@ -31,8 +36,13 @@ public class DietaController {
     @GetMapping("/novo")
     public ModelAndView novo(){
         var dieta = new Dieta();
+        var prato = new Prato();
+        var listaPratos = pratoService.getAll();
         HashMap<String, Object> dados = new HashMap<>();
+        dados.put("prato", prato);
+        dados.put("listaPratos", listaPratos);
         dados.put("dieta", dieta);
+        dados.put("novoPrato", new Prato());
 
         return new ModelAndView("dieta/form", dados);    }
 

@@ -1,6 +1,11 @@
 package br.univille.sisacademia.controller;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.ZoneId;
 import java.util.HashMap;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,11 +41,34 @@ public class CadastroController {
 
         return new ModelAndView("cadastro/form", dados);    }
 
-    @PostMapping(params = "form")
-    public ModelAndView save(Usuario usuario, BindingResult bindingResult) {
-        service.save(usuario);
+        @PostMapping(params = "form")
+        public ModelAndView save(@Valid Usuario usuario, BindingResult bindingResult) {
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("usuario", usuario);
+            
+        if ( bindingResult.hasErrors() ) {
+            return new ModelAndView("cadastro/form", dados);
+        }
+        
+        LocalDate localDate = usuario.getDataNascimento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-        return new ModelAndView("redirect:/home");
+        int anoAtual = YearMonth.now().getYear();
+        int mesAtual = YearMonth.now().getMonthValue();
+        int anoUsuario = localDate.getYear();
+        int mesUsuario = localDate.getMonthValue();
+        int idade;
+
+        if ( mesAtual < mesUsuario ) {
+            idade = anoAtual - anoUsuario - 1;
+        } else {
+            idade = anoAtual - anoUsuario;
+        }
+        usuario.setIdade(idade);
+
+        
+        service.save(usuario);
+        
+        return new ModelAndView("redirect:/home/" + usuario.getId());
     }
 
     @GetMapping("/alterar/{id}")

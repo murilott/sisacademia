@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+    <head th:include="layout :: head"></head>
+
+    <link rel="stylesheet" href="/principal.css">
+
+    <nav th:replace="layout :: menu"></nav>
+    <body>
+        <main class="container">
+            <header class="topo">
+                <h1><strong>Academy Master - Gerenciador de Academia</strong></h1>
+            </header>
+            
+            <article class="art1">
+                <h2><strong>VOCÊ TEM O QUE É PRECISO PARA SER UM CAMPEÃO?</strong></h3>
+            </article>
+
+            <div class="principal">
+                <a class="btn btn-dark" href="/cadastro/novo">JUNTE-SE AGORA</a>
+            </div>
+
+            <!-- <figure> -->
+                <!-- <img src="./img/equipamento.webp" alt="Giga chad"> -->
+            <!-- </figure> -->
+
+            <br>
+            <br>
+
+            <footer>
+                Para mais informaçõs, ligue para 121-700-5428
+                <script th:src="@{/webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+            </footer>
+        </main>
+    </body>
+</html>

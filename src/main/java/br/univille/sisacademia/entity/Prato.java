@@ -11,12 +11,14 @@ public class Prato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String nome;
     private String periodo;
     private float quantidade;
     private float calorias;
     @ManyToOne
     private Alimento alimento;
 
+    
     public float calculaCaloriasAlimento() {
         calorias = alimento.getPorcao() * alimento.getCalPorcao();
         return calorias;
@@ -51,5 +53,13 @@ public class Prato {
     }
     public void setAlimento(Alimento alimento) {
         this.alimento = alimento;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

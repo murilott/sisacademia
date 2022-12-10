@@ -5,26 +5,60 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Sistema de Academia</title>
         <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}">
-        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="./img/academia.ico" type="image/x-icon">
+        <!-- <link rel="stylesheet" href="./layoutcss.css"> -->
+        <style>
+            .uni-imagem {
+            border: 1px solid black;
+            height: auto;
+            max-width: 5%;
+        }
+            .home {
+        transition: all 0.5s;
+        cursor: pointer;
+        }
+            .home:hover{
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+                .navbar-brand{
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+
+        .navbar-brand:hover{
+            -webkit-filter: drop-shadow(15px 10px 5px rgba(0,0,0,.5));
+            filter: drop-shadow(15px 10px 5px rgba(0,0,0,.5));
+        }
+
+        </style>
     </head>
+
     <body>
         <nav th:fragment="menu" class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Academia</a>
+                <a class="navbar-brand" href="/home">Academy Master</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    <!-- <a class="nav-link" href="/clientes">Clientes</a> -->
-                    <!-- <a class="nav-link" href="/produtos">Produtos</a> -->
+                <div class="home">
+                    <a class="nav-link active" aria-current="page" href="/home" >Home</a>
+                </div>
+                <div class="home">
+                    <a class="nav-link active" href="/cadastro/novo">Cadastre-se</a>
+                </div>
+                <div class="home">
+                    <a class="nav-link active" href="/cadastro">Selecionar usuário</a>
+                </div>
                     <!-- <a class="nav-link" href="/cidades">Cidades</a> -->
                     <!-- <a class="nav-link" href="/vendas">Vendas</a> -->
                 </div>
                 </div>
+                <img class="uni-imagem" src="./img/univille.png" alt="">
             </div>
         </nav>    
 

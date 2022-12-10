@@ -3,28 +3,87 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
     <head th:include="layout :: head"></head>
+
+    <link rel="stylesheet" href="/home.css">
+
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
                 <header class="topo">
-                    <h1>Home</h1>
+                    <h1>Página de Usuário</h1>
                 </header>
                 <nav class="barra">
-                    <a class="btn btn-info" href="#">Alguma coisa</a>
-                    <a class="btn btn-info" href="#">Alguma coisa</a>
-                    <a class="btn btn-info" href="#">Alguma coisa</a>
+                    <tr th:each="umUsuario : ${listaUsuarios}">
+                    <a th:href="@{'/cadastro/alterar/' + ${umUsuario.id}}" class="btn btn-info">Editar perfil</a>
+                    </tr>
                 </nav>
                 <div class="usuario">
-                    nome do usuario
+                    <table class="table" id="tabnomeusuario">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="umUsuario : ${listaUsuarios}">
+                                
+                                <td th:text="${umUsuario.nome}"></td>
+                                
+                            </td>                     
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="infousuario">
-                    informaçoes do usuario
+                    <table class="table" id="tabusuario">
+                        <thead>
+                            <tr>
+                                <th>Sexo</th>
+                                <th>Telefone</th>
+                                <th>Endereço</th>
+                                <th>Data de Nascimento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="umUsuario : ${listaUsuarios}">
+                                <td th:text="${umUsuario.sexo}"></td>
+                                <td th:text="${umUsuario.telefone}"></td> 
+                                <td th:text="${umUsuario.endereco}"></td>
+                                <td th:text="${#dates.format(umUsuario.dataNascimento, 'dd/MM/yyyy')}"></td>  
+                            <tr>
+                        </tbody>
+                        <thead>
+                                <th>Altura</th>
+                                <th>Idade</th>
+                                <th>Peso</th>
+                                <th>Alergia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="umUsuario : ${listaUsuarios}">
+                                <td th:text="${umUsuario.altura}"></td>
+                                <td th:text="${umUsuario.idade}"></td> 
+                                <td th:text="${umUsuario.peso}"></td>
+
+                                <td th:if="${umUsuario.alergico}"
+                                    th:text="Sim"></td>
+                                <td th:unless="${umUsuario.alergico}">Não</td>
+                            </tr>
+                        </tbody>  
+                    </table>
                 </div>
-                <div class="rotina">
-                    informações da rotina
+                <div class="rotina" >
+                    <th:block th:each="umUsuario : ${listaUsuarios}">
+                        <a class="btn btn-info" th:href="@{'/rotina/' + ${umUsuario.id}}">Adicionar Rotina</a>
+                        <tr>
+                            <th:block th:if="${umUsuario.rotinaAtual}"</th:block>
+                            <p th:text="${umUsuario.rotinaAtual.nome}"></td>
+                            </th:block>
+                        </tr>
+                    </th:block>
                 </div>
                 <div class="dieta">
-                    informações da dieta
+                    <a class="btn btn-info" href="/dieta">Adicionar Dieta</a>
                 </div>
             </main>
          <footer th:include="layout :: footer"></footer>

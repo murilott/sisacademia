@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,6 +35,15 @@ public class HomeController {
         dados.put("listaDietas", listaDietas);
         dados.put("listaRotinas", listaRotinas);
         dados.put("listaUsuarios", listaUsuarios);
+
+        return new ModelAndView("home/principal", dados);
+    }
+
+    @GetMapping("/{id}")
+    public ModelAndView home(@PathVariable("id") long id) {
+        var umUsuario = service.findById(id);
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("listaUsuarios", umUsuario);
 
         return new ModelAndView("home/index", dados);
     }

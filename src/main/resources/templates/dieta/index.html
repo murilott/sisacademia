@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+    <head th:include="layout :: head"></head>
+    <link rel="stylesheet" href="/dieta.css">
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+            <header class="topo">
+                <h1>Dieta</h1>
+            </header>
+            <div class="listadietas">
+                <a href="/prato" class="btn btn-info">Criar Dieta</a>
+            </div>
+
+            <div class="infodieta">
+                Informações da dieta
+            </div>       
+        </main>
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>

@@ -6,11 +6,17 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Rotina {
@@ -20,9 +26,14 @@ public class Rotina {
     private String nome;
     private float tempo;
     private float calorias;
-    @OneToMany(cascade = CascadeType.ALL)
+    // @OneToMany
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.EAGER)
+    @JoinColumn(name = "rotina_id")
     private List<Treino> listaTreinos = new ArrayList<Treino>();
+    @Temporal(value = TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataInicio;
+    private String nomeTreinos = "";
 
     public float duracao() {
         // futuramente verificar se a lista de treinos possui algum treino que tem a variável "repetições"
@@ -30,13 +41,25 @@ public class Rotina {
         for ( int i = 0; i < listaTreinos.size(); i++ ) {
             tempo =+ listaTreinos.get(i).getDuracao();
         }
+
         return tempo;
+    }
+
+    public String retornaTreinos() {
+        for ( int i=0; i < listaTreinos.size(); i++) {
+            if ( listaTreinos.get(i).getExercicio().getNome() != null ) {
+                nomeTreinos += (listaTreinos.get(i).getExercicio().getNome() + ", ");
+            }
+        }
+
+        return nomeTreinos;
     }
 
     public float caloriaGastoTotal() {
         for ( int i = 0; i < listaTreinos.size(); i++ ) {
             calorias =+ listaTreinos.get(i).calculaCaloriasExercicio();
         }
+        
         return calorias;
     }
 
@@ -63,5 +86,17 @@ public class Rotina {
     }
     public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
+    }
+    public float getTempo() {
+        return tempo;
+    }
+    public void setTempo(float tempo) {
+        this.tempo = tempo;
+    }
+    public float getCalorias() {
+        return calorias;
+    }
+    public void setCalorias(float calorias) {
+        this.calorias = calorias;
     }
 }

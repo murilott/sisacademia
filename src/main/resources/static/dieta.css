@@ -1,0 +1,34 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9rem;
+    background-image: url("./img/dieta.webp");
+    max-width: 960px;
+    background-size: 100%;
+    margin: auto;
+}
+.container {
+    border: 1px solid black;
+    display: grid;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    grid-template:
+    'topo topo'
+    'listadietas infodieta';
+    
+}
+.topo {
+    border: 1px solid black;
+    grid-area: topo;
+    padding: 10px;
+}
+.listadietas {
+    border: 1px solid black;
+    grid-area: listadietas;
+    padding: 100px;
+}
+.infodieta {
+    border: 1px solid black;
+    grid-area: infodieta;
+    padding: 100px;
+}

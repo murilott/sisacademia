@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+    <head th:include="layout :: head"></head>
+    <link rel="stylesheet" href="cadastro.css">
+    <style>
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+    </style>
+
+    <nav th:replace="layout :: menu"></nav>
+    <body>
+        <main class="container">
+            <a href="/cadastro/novo" class="btn btn-primary">Novo</a>
+
+            <table class="table" id="tabusuario">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Sexo</th>
+                        <th>Telefone</th>
+                        <th>Endereço</th>
+                        <th>Data de Nascimento</th>
+                        <th>Altura</th>
+                        <th>Idade</th>
+                        <th>Peso</th>
+                        <th>Alergia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="umUsuario : ${listaUsuarios}">
+                        <td>
+                            <a class="btn btn-primary" th:href="@{'/home/' + ${umUsuario.id}}">Selecionar</a>
+                        </td>
+                        <td th:text="${umUsuario.id}"></td>  
+                        <td th:text="${umUsuario.nome}"></td>
+                        <td th:text="${umUsuario.sexo}"></td>  
+                        <td th:text="${umUsuario.telefone}"></td>
+                        <td th:text="${umUsuario.endereco}"></td>
+                        <td th:text="${umUsuario.dataNascimento}"></td>
+                        <td th:text="${umUsuario.altura}"></td>
+                        <td th:text="${umUsuario.idade}"></td>
+                        <td th:text="${umUsuario.peso}"></td>
+                        <td th:if="${umUsuario.alergico}"
+                                    th:text="Sim"></td>
+                                <td th:unless="${umUsuario.alergico}">Não</td>
+                        <td>
+                            <button class="btn btn-danger js-delete" th:data-id="${umUsuario.id}">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+        <div class="modal" tabindex="-1" id="modalusuario">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Excluir Usuário</h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>Confirme a exclusão do usuário</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+                        <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <footer th:include="layout :: footer"></footer>
+        <script th:src="@{/cadastro.js}"></script>
+    </body>
+</html>

@@ -3,7 +3,7 @@ package br.univille.sisacademia.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
+//import javax.persistence.ManyToOne;
 
 import javax.persistence.Id;
 
@@ -13,11 +13,25 @@ public class Exercicio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    private String imagem;
+    // private String imagem;
     private String nivelRecomendado;
-    @ManyToOne
-    private CategoriaExercicio categoria;
+    //@ManyToOne
+    //private CategoriaExercicio categoria;
+    private String categoria;
+    private float caloriaMedia;
 
+    public float getCaloriaMedia() {
+        return caloriaMedia;
+    }
+    public void setCaloriaMedia(float caloriaMedia) {
+        this.caloriaMedia = caloriaMedia;
+    }
+    public String getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
     public long getId() {
         return id;
     }
@@ -30,22 +44,16 @@ public class Exercicio {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public String getImagem() {
-        return imagem;
-    }
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
+    // public String getImagem() {
+    //     return imagem;
+    // }
+    // public void setImagem(String imagem) {
+    //     this.imagem = imagem;
+    // }
     public String getNivelRecomendado() {
         return nivelRecomendado;
     }
     public void setNivelRecomendado(String nivelRecomendado) {
         this.nivelRecomendado = nivelRecomendado;
-    }
-    public CategoriaExercicio getCategoria() {
-        return categoria;
-    }
-    public void setCategoria(CategoriaExercicio categoria) {
-        this.categoria = categoria;
     }
 }
