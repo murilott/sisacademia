@@ -1,4 +1,12 @@
 (function() {
+    if ($("#radiosim").is(":checked"))) {
+        $("#checkbox").modal("show");
+    }
+    // else if ($("#radionao").is(":checked")) {
+    //     // do B
+    // }
+    
+
     $("#tabusuario").on("click", ".js-delete", function() {
         let botaoClicado = $(this);
         $("#btnsim").attr("data-id", botaoClicado.attr("data-id"));

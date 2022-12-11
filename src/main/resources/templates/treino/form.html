@@ -21,7 +21,7 @@
                         <table class="table" id="tabtreino">
                             <thead>
                                 <tr>
-                                    <th>Exercício</th>
+                                    <th>Nome</th>
                                     <th>Séries</th>
                                     <th>Repetições</th>
                                     <th>Duração</th>
@@ -31,7 +31,7 @@
 
                             <tbody>
                                 <tr th:each="umTreino, stat : ${listaTreinos}">
-                                    <td th:text="${umTreino.exercicio?.nome}"></td>
+                                    <td th:text="${umTreino.nome}"></td>
                                     <!-- <input type="hidden" th:field="${listaTreinos[__${stat.index}__].exercicio.nome}"> -->
                                     
                                     <td th:text="${umTreino.serie}"></td>
