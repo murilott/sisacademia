@@ -66,7 +66,7 @@
                                 <td th:text="${umUsuario.peso}"></td>
 
                                 <td th:if="${umUsuario.alergico}"
-                                    th:text="Sim"></td>
+                                    th:text="@{'Sim - ' + ${umUsuario.alergia}}"></td>
                                 <td th:unless="${umUsuario.alergico}">Não</td>
                             </tr>
                         </tbody>  
@@ -75,11 +75,37 @@
                 <div class="rotina" >
                     <th:block th:each="umUsuario : ${listaUsuarios}">
                         <a class="btn btn-info" th:href="@{'/rotina/' + ${umUsuario.id}}">Adicionar Rotina</a>
-                        <tr>
-                            <th:block th:if="${umUsuario.rotinaAtual}"</th:block>
-                            <p th:text="${umUsuario.rotinaAtual.nome}"></td>
-                            </th:block>
-                        </tr>
+                            
+                        <th:block th:if="${umUsuario.rotinaAtual}">
+                            <!-- <p th:text="${umUsuario.rotinaAtual.nome}"></p> -->
+                            
+                            <table class="table" id="tabrotina">
+                                <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Lista de Treinos</th>
+                                            <th>Data de Início</th>
+                                        </tr>
+                                    </thead>
+                                <tbody>
+                                    <tr>
+                                        <td th:text="${umUsuario.rotinaAtual.nome}"></td>
+
+                                        <!-- <td th:text="${umUsuario.rotinaAtual.retornaTreinos()}"></td>  -->
+
+                                        <!-- <th:block if:="!${#lists.isEmpty(rotinaAtual.listaTreinos)"> -->
+                                            <td>
+                                                <th:block  th:each="umTreino : ${umUsuario.rotinaAtual.listaTreinos}">
+                                                    <p th:text="${umTreino.exercicio}"></p>
+                                                </th:block>
+                                            </td>
+                                        <!-- </th:block> -->
+
+                                        <td th:text="${#dates.format(umUsuario.rotinaAtual.dataInicio, 'dd/MM/yyyy')}"></td>  
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </th:block>
                     </th:block>
                 </div>
                 <div class="dieta">

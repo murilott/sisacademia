@@ -32,38 +32,54 @@ public class TreinoController {
         var treino = new Treino();
         var listaTreinos = treinoService.getAll();
         var listaExercicios = exercicioService.getAll();
+
         HashMap<String, Object> dados = new HashMap<>();
+
         dados.put("listaTreinos", listaTreinos);
         dados.put("treino", treino);
         dados.put("novoTreino", new Treino());
         dados.put("listaExercicios", listaExercicios);
+        
         return new ModelAndView("treino/form", dados);
     }
     @PostMapping(params = "inctreino")
     public ModelAndView incluirTreino(Treino treino){
+        var exercicio = treino.getExercicio();
+        var nome = exercicio.getNome() + " " + treino.getSerie() + "x" + treino.getRepeticoes() + ", " + treino.getIntensidade();
+        treino.setNome(nome);
+
         treinoService.save(treino);
+
         var listaTreinos = treinoService.getAll();
         var listaExercicios = exercicioService.getAll();
+
         HashMap<String,Object> dados = new HashMap<>();
+
         dados.put("listaTreinos", listaTreinos);
         dados.put("novoTreino", new Treino());
         dados.put("listaExercicios", listaExercicios);
+
         return new ModelAndView("redirect:/treino");
     }
 
     @GetMapping("/delete/{id}")
     public ModelAndView deletar(@PathVariable("id") long id) {
         treinoService.delete(id);
+
         return new ModelAndView("redirect:/treino");
     }
     
     @PostMapping(params = "removetreino")
     public ModelAndView removerItem(@RequestParam("removetreino") int index, Treino treino){
         treinoService.delete(index);
+
         var listaExercicios = exercicioService.getAll();
+
         HashMap<String,Object> dados = new HashMap<>();
+
         dados.put("listaExercicios", listaExercicios);
         dados.put("novoTreino", new Treino());
+        
         return new ModelAndView("rotina/form", dados);
     }
 }
