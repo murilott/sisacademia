@@ -27,12 +27,31 @@ public class Dieta {
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataInicio;
+    private String nomePratos = "";
 
     public float caloriaTotal() {
         for ( int i = 0; i < listaPratos.size(); i++ ) {
             calorias =+ listaPratos.get(i).calculaCaloriasAlimento();
         }
         return calorias;
+    }
+    public String retornaPratos() {
+        for ( int i=0; i < listaPratos.size(); i++) {
+            if ( listaPratos.get(i).getNome() != null ) {
+                nomePratos += (listaPratos.get(i).getNome() + "; ");
+            }
+        }
+
+        return nomePratos;
+    }
+
+
+    public float getCalorias() {
+        return calorias;
+    }
+
+    public void setCalorias(float calorias) {
+        this.calorias = calorias;
     }
 
     public long getId() {
