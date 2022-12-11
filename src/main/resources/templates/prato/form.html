@@ -78,7 +78,7 @@
                                     class="btn btn-primary">Adicionar Dieta</button>                   
                             </div>
                         </div>
-                        <a href="/dieta" class="btn btn-info">Confirmar</a>
+                        <a th:href="@{/dieta/{path}(path=${user_id})}" class="btn btn-primary">Voltar</button>
                     </div>
                 </form>
             
