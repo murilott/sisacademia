@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+
+        <main class="container">
+            
+            <form th:action="@{/dieta/{path}(path=${user_id})}" method="POST" th:object="${novaDieta}">
+                    <input type="hidden" th:field="${novaDieta.id}">
+
+                    <div class="form-group">
+                        <label for="txtnome">Nome:</label>
+                        <input type="text" th:field="${novaDieta.nome}" class="form-control" id="txtnome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtcalorias">Calorias:</label>
+                        <input type="number" th:field="${novaDieta.calorias}" class="form-control" id="txtcalorias">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtduracao">Data de Início:</label>
+                        <!-- <input type="date" th:field="${novaDieta.dataInicio}" class="form-control" id="txtduracao"> -->
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">          
+                            <h5 class="card-title">
+                                Pratos da Dieta
+                            </h5>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Prato</th>
+                                        <th>Período</th>
+                                        <th>Porção</th>
+                                        <th>Calorias</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr th:each="umPrato, stat : ${novaDieta.listaPratos}">
+                                        <td th:text="${umPrato.nome}"></td>
+                                        <input type="hidden" th:field="${novaDieta.listaPratos[__${stat.index}__].nome}">
+
+                                        <td th:text="${umPrato.periodo}"></td>
+                                        <input type="hidden" th:field="${novaDieta.listaPratos[__${stat.index}__].periodo}">
+
+                                        <td th:text="${umPrato.quantidade}"></td>
+                                        <input type="hidden" th:field="${novaDieta.listaPratos[__${stat.index}__].quantidade}">
+
+                                        <td th:text="${umPrato.calorias}"></td>
+                                        <input type="hidden" th:field="${novaDieta.listaPratos[__${stat.index}__].calorias}"> 
+                                        <td>
+                                            <button class="btn btn-danger"
+                                                type="submit"
+                                                name="removetreino"
+                                                th:value="__${stat.index}__">Remover
+                                            </button>
+                                        </td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                    
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Adicionar pratos a Dieta
+                                    </h5>
+
+                                    <div class="form-group">
+                                        <label for="cbprato">Prato:</label>
+                                        <select class="form-select" id="cbprato" th:field="${novaDieta.pratoSelecionado}">
+                                            <option th:each="umPrato : ${listaPratos}"
+                                                th:value="${umPrato.id}"
+                                                th:text="${umPrato.nome}">
+                                            </option>
+                                        </select>
+
+                                        <button type="submit" name="incpratodieta" class="btn btn-primary">Adicionar Prato</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" name="save" class="btn btn-primary">Salvar Dieta</button>
+                    <a th:href="@{/dieta/{path}(path=${user_id})}" class="btn btn-primary">Voltar</button>
+            </form>
+        </main>
+
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>

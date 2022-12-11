@@ -9,4 +9,5 @@ public interface CategoriaExercicioService {
     CategoriaExercicio save(CategoriaExercicio categoriaExercicio);
     CategoriaExercicio findById(long id);
     void delete(long id);
+    // easter egg pro murcilho ver 😀
 }

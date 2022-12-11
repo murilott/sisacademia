@@ -11,11 +11,39 @@
                 <h1>Dieta</h1>
             </header>
             <div class="listadietas">
-                <a href="/prato" class="btn btn-info">Criar Dieta</a>
+                <a th:href="@{${usuarioAtual.id} + '/novo'}" class="btn btn-info">Criar Dieta</a>
+                <a href="/prato" class="btn btn-info">Criar Prato</a>
+                <a th:href="@{'/home/' + ${usuarioAtual.id}}" class="btn btn-info">Voltar</a>              
             </div>
 
             <div class="infodieta">
-                Informações da dieta
+                
+                <br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Lista de Pratos</th>
+                            <th>Calorias</th>
+                            <th>Data de início</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="umaDieta, stat : ${listaDietas}">
+                            <td>
+                                <a th:href="@{${usuarioAtual.id} + '/selecionar/' + ${umaDieta.id}} " class="btn btn-info">Selecionar Dieta</a>
+                            </td>
+
+                            <td th:text="${umaDieta.nome}"></td>
+
+                            <td th:text="${umaDieta.retornaPratos()}"></td>
+
+                            <td th:text="${umaDieta.calorias}"></td>
+
+                            <td th:text="${umaDieta.dataInicio}"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>       
         </main>
         <footer th:include="layout :: footer"></footer>

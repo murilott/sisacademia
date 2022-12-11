@@ -109,9 +109,15 @@
                     </th:block>
                 </div>
                 <div class="dieta">
-                    <a class="btn btn-info" href="/dieta">Adicionar Dieta</a>
-                </div>
-            </main>
+                    <th:block th:each="umUsuario : ${listaUsuarios}">
+                        <a class="btn btn-info" th:href="@{'/dieta/' + ${umUsuario.id}}">Adicionar Dieta</a>
+                        <tr>
+                            <th:block th:if="${umUsuario.dietaAtual}"</th:block>
+                            <p th:text="${umUsuario.dietaAtual.nome}"></td>
+                            </th:block>
+                        </tr>
+                    </div>
+                </main>
          <footer th:include="layout :: footer"></footer>
     </body>
 </html>

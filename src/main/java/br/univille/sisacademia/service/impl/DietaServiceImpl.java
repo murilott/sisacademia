@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import br.univille.sisacademia.dto.DietaDTO;
 import br.univille.sisacademia.entity.Dieta;
 import br.univille.sisacademia.repository.DietaRepository;
 import br.univille.sisacademia.service.DietaService;
@@ -22,8 +22,29 @@ public class DietaServiceImpl implements DietaService {
     }
 
     @Override
-    public Dieta save(Dieta dieta) {
-        return repositorio.save(dieta);
+    public Dieta save(Dieta dieta, DietaDTO dietaDTO) {
+        var resultado = repositorio.findById(dietaDTO.getId());
+
+        // return repositorio.save(dieta);
+        if( resultado.isPresent()) {
+            dieta.setNome(dietaDTO.getNome());
+            dieta.setCalorias(dietaDTO.getCalorias());
+            dieta.setDataInicio(dietaDTO.getDataInicio());
+
+            return repositorio.save(dieta);
+        } else {
+            var novaDieta = new Dieta();
+            novaDieta.setNome(dietaDTO.getNome());
+            for(int i=0; i<dietaDTO.getListaPratos().size(); i++){
+                var pratoDTO = dietaDTO.getListaPratos().get(i);
+
+                novaDieta.getListaPratos().add(pratoDTO);
+            }
+            novaDieta.setCalorias(dietaDTO.getCalorias());
+            novaDieta.setDataInicio(dietaDTO.getDataInicio());
+
+            return repositorio.save(novaDieta);
+        }
     }
 
     @Override
