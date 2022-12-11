@@ -51,7 +51,7 @@
                         <td th:text="${umUsuario.idade}"></td>
                         <td th:text="${umUsuario.peso}"></td>
                         <td th:if="${umUsuario.alergico}"
-                                    th:text="Sim"></td>
+                                    th:text="@{'Sim - ' + ${umUsuario.alergia}}"></td>
                                 <td th:unless="${umUsuario.alergico}">Não</td>
                         <td>
                             <button class="btn btn-danger js-delete" th:data-id="${umUsuario.id}">Excluir</button>

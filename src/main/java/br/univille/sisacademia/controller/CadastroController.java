@@ -43,7 +43,9 @@ public class CadastroController {
 
         @PostMapping(params = "form")
         public ModelAndView save(@Valid Usuario usuario, BindingResult bindingResult) {
+
         HashMap<String, Object> dados = new HashMap<>();
+        
         dados.put("usuario", usuario);
             
         if ( bindingResult.hasErrors() ) {

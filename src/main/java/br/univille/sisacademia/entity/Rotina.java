@@ -47,8 +47,8 @@ public class Rotina {
 
     public String retornaTreinos() {
         for ( int i=0; i < listaTreinos.size(); i++) {
-            if ( listaTreinos.get(i).getExercicio().getNome() != null ) {
-                nomeTreinos += (listaTreinos.get(i).getExercicio().getNome() + "; ");
+            if ( listaTreinos.get(i).getNome() != null ) {
+                nomeTreinos += (listaTreinos.get(i).getNome() + "; ");
             }
         }
 
