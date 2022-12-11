@@ -66,7 +66,7 @@
                                 <td th:text="${umUsuario.peso}"></td>
 
                                 <td th:if="${umUsuario.alergico}"
-                                    th:text="Sim"></td>
+                                    th:text="@{'Sim - ' + ${umUsuario.alergia}}"></td>
                                 <td th:unless="${umUsuario.alergico}">Não</td>
                             </tr>
                         </tbody>  

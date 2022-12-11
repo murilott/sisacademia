@@ -51,10 +51,19 @@ public class Usuario {
     private List<Alergia> listaAlergias = new ArrayList<Alergia>();
     // @OneToMany(cascade = CascadeType.ALL)
     // private List listaAlergiaString = new ArrayList();     
+    private String alergia;
     @ManyToOne
     private Rotina rotinaAtual;
     @ManyToOne
     private Dieta dietaAtual;
+
+    public String getAlergia() {
+        return alergia;
+    }
+
+    public void setAlergia(String alergia) {
+        this.alergia = alergia;
+    }
 
     public long getId() {
         return id;
