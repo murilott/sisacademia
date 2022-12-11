@@ -1,5 +1,7 @@
 package br.univille.sisacademia.controller;
 
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +76,9 @@ public class RotinaController {
     @GetMapping("/selecionar/{rotina_id}")
     public ModelAndView selecionarRotina(@PathVariable("user_id") Long user_id, @PathVariable("rotina_id") Long rotina_id) {
         var umUsuario = usuarioService.findById(user_id);
+        Date date = Date.from(java.time.LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        
+        service.findById(rotina_id).setDataInicio(date);
 
         umUsuario.setRotinaAtual(service.findById(rotina_id));
         usuarioService.save(umUsuario);
