@@ -79,29 +79,30 @@
                 </div>
                 <div class="form-group">
                     <label>Possui alergia?</label>
-                        <br>
+
+                    <div id="radiodiv">
                         <input type="radio" name="yes_no" th:field="*{alergico}" value="true" id="sim" class="radiosim"></input>
                         <label for="sim">Sim</label>
                         <br>
                         <input type="radio" name="yes_no" th:field="*{alergico}" value="false" id="nao" checked class="radionao"></input>
                         <label for="nao">Não</label>
+                    </div>
 
-                        <div hidden class="checkbox">
-                            <label>Selecione quais:</label>
-                            <div class="form-check" th:unless="${alergico}">
-
-                                <input class="form-check-input" type="checkbox" value="Lactose" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Lactose
-                                </label>
-                            </div>
-                            <div class="form-check" th:unless="${alergico}">
-                                <input class="form-check-input" type="checkbox" value="Glúten" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Glúten
-                                </label>
-                            </div>
+                    <div class="checkbox" id="alergiaCheck">
+                        <label>Selecione quais:</label>
+                        <div class="form-check" th:unless="${alergico}">
+                            <input class="form-check-input" type="checkbox" value="Lactose" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Lactose
+                            </label>
                         </div>
+                        <div class="form-check" th:unless="${alergico}">
+                            <input class="form-check-input" type="checkbox" value="Glúten" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Glúten
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <br>
@@ -110,5 +111,6 @@
             </form>
         </main>
         <footer th:include="layout :: footer"></footer>
+        <script th:src="@{/cadastro.js}"></script>
     </body>
 </html>

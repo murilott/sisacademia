@@ -1,11 +1,15 @@
 (function() {
-    if ($("#radiosim").is(":checked"))) {
-        $("#checkbox").modal("show");
-    }
-    // else if ($("#radionao").is(":checked")) {
-    //     // do B
-    // }
+    var caixa = document.getElementById("alergiaCheck");
+    caixa.style.display = "none";
+
+    $("#radiodiv input:radio").click(function() {
+        if ($("#sim").is(":checked")) {
+            caixa.style.display = "block";
     
+        } else if ($("#nao").is(":checked")) {
+            caixa.style.display = "none";
+        }
+    });
 
     $("#tabusuario").on("click", ".js-delete", function() {
         let botaoClicado = $(this);

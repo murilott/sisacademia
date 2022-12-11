@@ -49,6 +49,8 @@ public class Usuario {
     private boolean alergico;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Alergia> listaAlergias = new ArrayList<Alergia>();
+    // @OneToMany(cascade = CascadeType.ALL)
+    // private List listaAlergiaString = new ArrayList();     
     @ManyToOne
     private Rotina rotinaAtual;
     @ManyToOne
@@ -157,4 +159,12 @@ public class Usuario {
     public void setDietaAtual(Dieta dietaAtual) {
         this.dietaAtual = dietaAtual;
     }
+    
+    // public List<String> getListaAlergiaString() {
+    //     return listaAlergiaString;
+    // }
+
+    // public void setListaAlergiaString(List<String> listaAlergiaString) {
+    //     this.listaAlergiaString = listaAlergiaString;
+    // }
 }
