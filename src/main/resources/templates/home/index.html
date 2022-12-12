@@ -112,11 +112,38 @@
                     <th:block th:each="umUsuario : ${listaUsuarios}">
                         <a class="btn btn-info" th:href="@{'/dieta/' + ${umUsuario.id}}">Adicionar Dieta</a>
                         <tr>
-                            <th:block th:if="${umUsuario.dietaAtual}"</th:block>
-                            <p th:text="${umUsuario.dietaAtual.nome}"></td>
-                            </th:block>
-                        </tr>
-                    </div>
+                            <th:block th:if="${umUsuario.dietaAtual}">
+                            <!-- <p th:text="${umUsuario.rotinaAtual.nome}"></p> -->
+                            
+                            <table class="table" id="tabdieta">
+                                <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Lista de Pratos</th>
+                                            <th>Data de Início</th>
+                                        </tr>
+                                    </thead>
+                                <tbody>
+                                    <tr>
+                                        <td th:text="${umUsuario.dietaAtual.nome}"></td>
+
+                                        <!-- <td th:text="${umUsuario.rotinaAtual.retornaTreinos()}"></td>  -->
+
+                                        <!-- <th:block if:="!${#lists.isEmpty(rotinaAtual.listaTreinos)"> -->
+                                            <td>
+                                                <th:block  th:each="umPrato : ${umUsuario.dietaAtual.listaPratos}">
+                                                    <p th:text="${umPrato.nome}"></p>
+                                                </th:block>
+                                            </td>
+                                        <!-- </th:block> -->
+
+                                        <td th:text="${#dates.format(umUsuario.dietaAtual.dataInicio, 'dd/MM/yyyy')}"></td>  
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </th:block>
+                    </th:block>
+                </div>
                 </main>
          <footer th:include="layout :: footer"></footer>
     </body>
