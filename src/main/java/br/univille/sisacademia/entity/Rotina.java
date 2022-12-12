@@ -27,7 +27,7 @@ public class Rotina {
     private float tempo = 0;
     private float calorias;
     // @OneToMany
-    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.EAGER)
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, fetch = FetchType.EAGER)
     @JoinColumn(name = "rotina_id")
     private List<Treino> listaTreinos = new ArrayList<Treino>();
     @Temporal(value = TemporalType.DATE)
