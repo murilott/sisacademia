@@ -28,7 +28,6 @@
                 <table class="table" th:if="${umaRotina != null}">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Nome</th>
                             <th>Lista de Treinos</th>
                         </tr>
@@ -37,10 +36,7 @@
                     <tbody>
                         <!-- <tr th:each="umaRotina, stat : ${listaRotinas}"> -->
                         <tr>
-                            <td>
-                                <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/selecionar/' + ${umaRotina?.id}} " class="btn btn-info">Selecionar Rotina</a>
-                            </td>
-
+                        
                             <td th:text="${umaRotina?.nome}"></td>
 
                             <td th:text="${umaRotina?.retornaTreinos()}"></td>
@@ -53,6 +49,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <td>
+                    <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/selecionar/' + ${umaRotina?.id}} " class="btn btn-info">Selecionar Rotina</a>
+                </td>
             </div>
             
             <div class="navbutton">
