@@ -10,42 +10,58 @@
             <header class="topo">
                 <h1>Dieta</h1>
             </header>
+
             <div class="listadietas">
-                <a th:href="@{${usuarioAtual.id} + '/novo'}" class="btn btn-info" >Criar Dieta</a>
-                <a href="/prato" class="btn btn-info">Criar Prato</a>
-                <a th:href="@{'/home/' + ${usuarioAtual.id}}" class="btn btn-info">Voltar</a>              
+                <button type="button" class="dieta" th:each="umaDieta, stat : ${listaDietas}" th:id="${umaDieta.id}" th:user-id="${usuarioAtual.id}">
+                    <h5 th:text="${umaDieta.nome}"></h5>
+                    <h6 th:text="${umaDieta.id}"></h6>
+                </button>
             </div>
 
             <div class="infodieta">
-                
-                <br>
-                <table class="table">
+                <div class="headerdieta">
+                    <th:block th:if="${umaDieta != null}">
+                        <h5 th:text="@{'Nome: ' + ${umaDieta?.nome}}"></h5>
+                        <h5 th:text="@{'Calorias: ' + ${umaDieta?.caloriaTotal}}"></h5>
+                    </th:block>
+                </div>
+                <table class="table" id="customers" th:if="${umaDieta != null}">
                     <thead>
                         <tr>
                             <th>Nome</th>
                             <th>Lista de Pratos</th>
-                            <th>Calorias</th>
-                            <th>Data de início</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="umaDieta, stat : ${listaDietas}">
-                            <td>
-                                <a th:href="@{${usuarioAtual.id} + '/selecionar/' + ${umaDieta.id}} " class="btn btn-info">Selecionar Dieta</a>
-                            </td>
+                        <tr>
+                        <!-- <tr th:each="umaDieta, stat : ${listaDietas}"> -->
+                           
 
                             <td th:text="${umaDieta.nome}"></td>
 
                             <td th:text="${umaDieta.retornaPratos()}"></td>
 
-                            <td th:text="${umaDieta.calorias}"></td>
+                            <!-- <td th:text="${umaDieta.calorias}"></td>
 
-                            <td th:text="${umaDieta.dataInicio}"></td>
+                            <td th:text="${umaDieta.dataInicio}"></td> -->
                         </tr>
                     </tbody>
                 </table>
-            </div>       
+                <td>
+                    <a th:href="@{'/dieta/' + ${usuarioAtual.id} + '/selecionar/' + ${umaDieta.id}} " class="btn btn-success">Selecionar Dieta</a>
+                </td>
+            </div>
+            
+            <div class="navbutton">
+                <!-- <a th:href="@{'/rotina/novo/' + ${usuarioAtual.id}}" class="btn btn-info">Criar Rotina</a> -->
+                <!-- <a th:href="@{${usuarioAtual.id} + '/rotina/novo/' + ${usuarioAtual.id}}" class="btn btn-info">Criar Rotina</a> -->
+                <a th:href="@{'/home/' + ${usuarioAtual.id}}" class="btn btn-info">Voltar</a>
+                <a th:href="@{'/dieta/' + ${usuarioAtual.id} + '/novo'}" class="btn btn-info">Criar Dieta</a>
+                <a href="/prato" class="btn btn-info">Criar Prato</a> 
+            </div>        
         </main>
         <footer th:include="layout :: footer"></footer>
+
+        <script th:src="@{/dieta.js}"></script>
     </body>
 </html>

@@ -20,13 +20,14 @@
 
             <div class="inforotina">
                 <div class="headerrotina">
-                    <h5 th:text="@{'Nome: ' + ${umaRotina.nome}}">Nome:</h5>
-                    <h5 th:text="@{'Tempo Total(min): ' + ${#numbers.formatDecimal(umaRotina.duracao()/60, 1, 2)}}">Tempo total:</h5>
-                </div>
+                    <th:block th:if="${umaRotina != null}">
+                        <h5 th:text="@{'Nome: ' + ${umaRotina?.nome}}"></h5>
+                        <h5 th:text="@{'Tempo Total(min): ' + ${#numbers.formatDecimal(umaRotina?.duracao()/60, 1, 2)}}">Tempo total:</h5>
+                    </th:block>
+                    </div>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Nome</th>
                             <th>Lista de Treinos</th>
                         </tr>
@@ -35,13 +36,11 @@
                     <tbody>
                         <!-- <tr th:each="umaRotina, stat : ${listaRotinas}"> -->
                         <tr>
-                            <td>
-                                <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/selecionar/' + ${umaRotina.id}} " class="btn btn-info">Selecionar Rotina</a>
-                            </td>
+                            
 
-                            <td th:text="${umaRotina.nome}"></td>
+                            <td th:text="${umaRotina?.nome}"></td>
 
-                            <td th:text="${umaRotina.retornaTreinos()}"></td>
+                            <td th:text="${umaRotina?.retornaTreinos()}"></td>
 
                             <!-- <th:block th:each="umaRotina, stat : ${listaRotinas}">
                                 <td th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"></td>
@@ -51,6 +50,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <td>
+                    <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/selecionar/' + ${umaRotina?.id}} " class="btn btn-info">Selecionar Rotina</a>
+                </td>
             </div>
             
             <div class="navbutton">

@@ -1,5 +1,7 @@
 package br.univille.sisacademia.controller;
 
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +66,9 @@ public class DietaController {
     @GetMapping("/selecionar/{dieta_id}")
     public ModelAndView selecionarDieta(@PathVariable("user_id") Long user_id, @PathVariable("dieta_id") Long dieta_id) {
         var umUsuario = usuarioService.findById(user_id);
+        Date date = Date.from(java.time.LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        service.findById(dieta_id).setDataInicio(date);
 
         umUsuario.setDietaAtual(service.findById(dieta_id));
         usuarioService.save(umUsuario);
@@ -94,6 +99,22 @@ public class DietaController {
         dados.put("listaDietas", listaDietas);
 
         return new ModelAndView("dieta/form", dados);
+    }
+    @GetMapping("/escolher/{id}")
+    public ModelAndView escolher(@PathVariable("id") long id, @PathVariable("user_id") long user_id) {
+        var usuarioAtual = usuarioService.findById(user_id);
+        var umaDieta = service.findById(id);
+        var listaDietas = service.getAll();
+
+        System.out.println(umaDieta.getNome());
+
+        HashMap<String, Object> dados = new HashMap<>();
+
+        dados.put("umaDieta", umaDieta);
+        dados.put("usuarioAtual", usuarioAtual);
+        dados.put("listaDietas", listaDietas);
+
+        return new ModelAndView("dieta/index", dados);
     }
 
     @GetMapping("/alterar/{id}")
