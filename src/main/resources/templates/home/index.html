@@ -111,11 +111,9 @@
                 <div class="dieta">
                     <th:block th:each="umUsuario : ${listaUsuarios}">
                         <a class="btn btn-info" th:href="@{'/dieta/' + ${umUsuario.id}}">Adicionar Dieta</a>
-                        <tr>
-                            <th:block th:if="${umUsuario.dietaAtual}">
-                            <!-- <p th:text="${umUsuario.rotinaAtual.nome}"></p> -->
                             
-                            <table class="table" id="tabdieta">
+                        <th:block th:if="${umUsuario.dietaAtual}">
+                            <table class="table" id="tabrotina">
                                 <thead>
                                         <tr>
                                             <th>Nome</th>
@@ -136,7 +134,7 @@
                                                 </th:block>
                                             </td>
                                         <!-- </th:block> -->
-
+                                        
                                         <td th:text="${#dates.format(umUsuario.dietaAtual.dataInicio, 'dd/MM/yyyy')}"></td>  
                                     <tr>
                                 </tbody>
@@ -144,7 +142,7 @@
                         </th:block>
                     </th:block>
                 </div>
-                </main>
+             </main>
          <footer th:include="layout :: footer"></footer>
     </body>
 </html>

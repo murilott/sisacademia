@@ -24,8 +24,8 @@
                         <h5 th:text="@{'Nome: ' + ${umaRotina?.nome}}"></h5>
                         <h5 th:text="@{'Tempo Total(min): ' + ${#numbers.formatDecimal(umaRotina?.duracao()/60, 1, 2)}}">Tempo total:</h5>
                     </th:block>
-                    </div>
-                <table class="table">
+                </div>
+                <table class="table" th:if="${umaRotina != null}">
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -36,8 +36,7 @@
                     <tbody>
                         <!-- <tr th:each="umaRotina, stat : ${listaRotinas}"> -->
                         <tr>
-                            
-
+                        
                             <td th:text="${umaRotina?.nome}"></td>
 
                             <td th:text="${umaRotina?.retornaTreinos()}"></td>
