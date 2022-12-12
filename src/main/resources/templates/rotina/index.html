@@ -10,16 +10,62 @@
             <header class="topo">
                 <h1>Rotina</h1>
             </header>
-            <div class="listarotinas">
-                <a href="/exercicio" class="btn btn-info">Criar Rotina</a>
-                <a href="/exercicio" class="btn btn-info">Criar Exercício</a>
-                <a href="/treino" class="btn btn-info">Criar Treino</a>               
+
+            <div class="listarotinas">              
+                <button type="button" class="rotina" th:each="umaRotina, stat : ${listaRotinas}" th:id="${umaRotina.id}" th:user-id="${usuarioAtual.id}">
+                    <h5 th:text="${umaRotina.nome}"></h5>
+                    <h6 th:text="${umaRotina.id}"></h6>
+                </button>
             </div>
 
             <div class="inforotina">
-                Informações da rotina
-            </div>       
+                <div class="headerrotina">
+                    <th:block th:if="${umaRotina != null}">
+                        <h5 th:text="@{'Nome: ' + ${umaRotina?.nome}}"></h5>
+                        <h5 th:text="@{'Tempo Total(min): ' + ${#numbers.formatDecimal(umaRotina?.duracao()/60, 1, 2)}}">Tempo total:</h5>
+                    </th:block>
+                </div>
+                <table class="table" id="customers" th:if="${umaRotina != null}">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Lista de Treinos</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <!-- <tr th:each="umaRotina, stat : ${listaRotinas}"> -->
+                        <tr>
+                        
+                            <td th:text="${umaRotina?.nome}"></td>
+
+                            <td th:text="${umaRotina?.retornaTreinos()}"></td>
+
+                            <!-- <th:block th:each="umaRotina, stat : ${listaRotinas}">
+                                <td th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"></td>
+                            </th:block> -->
+
+                            <!-- <td th:text="${#numbers.formatDecimal(umaRotina.duracao()/60, 1, 2)}"></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+                <td>
+                    <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/selecionar/' + ${umaRotina?.id}} " class="btn btn-success">Selecionar Rotina</a>
+                </td>
+            </div>
+            
+            <div class="navbutton">
+                <!-- <a th:href="@{'/rotina/novo/' + ${usuarioAtual.id}}" class="btn btn-info">Criar Rotina</a> -->
+                <!-- <a th:href="@{${usuarioAtual.id} + '/rotina/novo/' + ${usuarioAtual.id}}" class="btn btn-info">Criar Rotina</a> -->
+                <a th:href="@{'/home/' + ${usuarioAtual.id}}" class="btn btn-info">Voltar</a>
+                <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/novo'}" class="btn btn-info">Criar Rotina</a>
+                <a href="/treino" class="btn btn-info">Criar Treino</a> 
+                <a href="/exercicio" class="btn btn-info">Criar Exercício</a>
+            </div>
         </main>
+
         <footer th:include="layout :: footer"></footer>
+
+        <script th:src="@{/rotina.js}"></script>
     </body>
 </html>

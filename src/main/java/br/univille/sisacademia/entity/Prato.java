@@ -20,7 +20,7 @@ public class Prato {
 
     
     public float calculaCaloriasAlimento() {
-        calorias = alimento.getPorcao() * alimento.getCalPorcao();
+
         return calorias;
     }
     
