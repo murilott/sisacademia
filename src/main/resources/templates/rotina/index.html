@@ -20,10 +20,12 @@
 
             <div class="inforotina">
                 <div class="headerrotina">
-                    <h5 th:text="@{'Nome: ' + ${umaRotina.nome}}">Nome:</h5>
-                    <h5 th:text="@{'Tempo Total(min): ' + ${#numbers.formatDecimal(umaRotina.duracao()/60, 1, 2)}}">Tempo total:</h5>
+                    <th:block th:if="${umaRotina != null}">
+                        <h5 th:text="@{'Nome: ' + ${umaRotina?.nome}}"></h5>
+                        <h5 th:text="@{'Tempo Total(min): ' + ${#numbers.formatDecimal(umaRotina?.duracao()/60, 1, 2)}}">Tempo total:</h5>
+                    </th:block>
                 </div>
-                <table class="table">
+                <table class="table" th:if="${umaRotina != null}">
                     <thead>
                         <tr>
                             <th></th>
@@ -36,12 +38,12 @@
                         <!-- <tr th:each="umaRotina, stat : ${listaRotinas}"> -->
                         <tr>
                             <td>
-                                <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/selecionar/' + ${umaRotina.id}} " class="btn btn-info">Selecionar Rotina</a>
+                                <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/selecionar/' + ${umaRotina?.id}} " class="btn btn-info">Selecionar Rotina</a>
                             </td>
 
-                            <td th:text="${umaRotina.nome}"></td>
+                            <td th:text="${umaRotina?.nome}"></td>
 
-                            <td th:text="${umaRotina.retornaTreinos()}"></td>
+                            <td th:text="${umaRotina?.retornaTreinos()}"></td>
 
                             <!-- <th:block th:each="umaRotina, stat : ${listaRotinas}">
                                 <td th:text="${umaRotina.listaTreinos[__${stat.index}__].exercicio.nome}"></td>
