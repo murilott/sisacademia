@@ -111,12 +111,37 @@
                 <div class="dieta">
                     <th:block th:each="umUsuario : ${listaUsuarios}">
                         <a class="btn btn-info" th:href="@{'/dieta/' + ${umUsuario.id}}">Adicionar Dieta</a>
-                        <tr>
-                            <th:block th:if="${umUsuario.dietaAtual}"</th:block>
-                            <p th:text="${umUsuario.dietaAtual.nome}"></td>
-                            </th:block>
-                        </tr>
-                    </div>
+                            
+                        <th:block th:if="${umUsuario.dietaAtual}">
+                            
+                            <table class="table" id="tabrotina">
+                                <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Lista de Pratos</th>
+                                            <th>Data de Início</th>
+                                        </tr>
+                                    </thead>
+                                <tbody>
+                                    <tr>
+                                        <td th:text="${umUsuario.dietaAtual.nome}"></td>
+
+                                        <!-- <td th:text="${umUsuario.rotinaAtual.retornaTreinos()}"></td>  -->
+
+                                        <!-- <th:block if:="!${#lists.isEmpty(rotinaAtual.listaTreinos)"> -->
+                                            <td>
+                                                <th:block  th:each="umPrato : ${umUsuario.dietaAtual.listaPratos}">
+                                                    <p th:text="${umPrato.nome}"></p>
+                                                </th:block>
+                                            </td>
+                                        <!-- </th:block> -->
+
+                                        <td th:text="${#dates.format(umUsuario.rotinaAtual.dataInicio, 'dd/MM/yyyy')}"></td>  
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </th:block>
+                    </th:block>
                 </main>
          <footer th:include="layout :: footer"></footer>
     </body>
