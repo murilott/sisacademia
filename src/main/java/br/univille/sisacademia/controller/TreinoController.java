@@ -45,7 +45,7 @@ public class TreinoController {
     @PostMapping(params = "inctreino")
     public ModelAndView incluirTreino(Treino treino){
         var exercicio = treino.getExercicio();
-        var nome = exercicio.getNome() + " " + treino.getSerie() + "x" + treino.getRepeticoes() + ", " + treino.getIntensidade();
+        var nome = exercicio.getNome() + " " + exercicio.getNivelRecomendado() + ": " + treino.getSerie() + "x" + treino.getRepeticoes() + ", " + treino.getIntensidade();
         treino.setNome(nome);
 
         treinoService.save(treino);

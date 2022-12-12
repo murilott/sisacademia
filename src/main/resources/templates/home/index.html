@@ -91,14 +91,14 @@
                                     <tr>
                                         <td th:text="${umUsuario.rotinaAtual.nome}"></td>
 
-                                        <!-- <td th:text="${umUsuario.rotinaAtual.retornaTreinos()}"></td>  -->
+                                        <td th:text="${umUsuario.rotinaAtual.retornaTreinos()}"></td> 
 
                                         <!-- <th:block if:="!${#lists.isEmpty(rotinaAtual.listaTreinos)"> -->
-                                            <td>
+                                            <!-- <td>
                                                 <th:block  th:each="umTreino : ${umUsuario.rotinaAtual.listaTreinos}">
                                                     <p th:text="${umTreino.exercicio}"></p>
                                                 </th:block>
-                                            </td>
+                                            </td> -->
                                         <!-- </th:block> -->
 
                                         <td th:text="${#dates.format(umUsuario.rotinaAtual.dataInicio, 'dd/MM/yyyy')}"></td>  

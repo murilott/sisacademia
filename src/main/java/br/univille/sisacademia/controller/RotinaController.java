@@ -1,5 +1,6 @@
 package br.univille.sisacademia.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
@@ -111,6 +112,23 @@ public class RotinaController {
         dados.put("listaExercicios", listaExercicios);
 
         return new ModelAndView("rotina/form", dados);
+    }
+
+    @GetMapping("/escolher/{id}")
+    public ModelAndView escolher(@PathVariable("id") long id, @PathVariable("user_id") long user_id) {
+        var usuarioAtual = usuarioService.findById(user_id);
+        var umaRotina = service.findById(id);
+        var listaRotinas = service.getAll();
+
+        System.out.println(umaRotina.getNome());
+
+        HashMap<String, Object> dados = new HashMap<>();
+
+        dados.put("umaRotina", umaRotina);
+        dados.put("usuarioAtual", usuarioAtual);
+        dados.put("listaRotinas", listaRotinas);
+
+        return new ModelAndView("rotina/index", dados);
     }
 
     @GetMapping("/alterar/{id}")

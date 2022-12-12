@@ -24,7 +24,7 @@ public class Rotina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    private float tempo;
+    private float tempo = 0;
     private float calorias;
     // @OneToMany
     @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.EAGER)
@@ -38,8 +38,9 @@ public class Rotina {
     public float duracao() {
         // futuramente verificar se a lista de treinos possui algum treino que tem a variável "repetições"
         // com o valor "falso" para evitar erros
+        tempo = 0;
         for ( int i = 0; i < listaTreinos.size(); i++ ) {
-            tempo =+ listaTreinos.get(i).getDuracao();
+            tempo += listaTreinos.get(i).getDuracao();
         }
 
         return tempo;

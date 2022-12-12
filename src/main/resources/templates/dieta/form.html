@@ -17,15 +17,10 @@
                         <input type="text" th:field="${novaDieta.nome}" class="form-control" id="txtnome">
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="txtcalorias">Calorias:</label>
                         <input type="number" th:field="${novaDieta.calorias}" class="form-control" id="txtcalorias">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="txtduracao">Data de Início:</label>
-                        <!-- <input type="date" th:field="${novaDieta.dataInicio}" class="form-control" id="txtduracao"> -->
-                    </div>
+                    </div> -->
 
                     <div class="card">
                         <div class="card-body">          
@@ -40,6 +35,7 @@
                                         <th>Período</th>
                                         <th>Porção</th>
                                         <th>Calorias</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -90,7 +86,7 @@
                     </div>
 
                     <button type="submit" name="save" class="btn btn-primary">Salvar Dieta</button>
-                    <a th:href="@{/dieta/{path}(path=${user_id})}" class="btn btn-primary">Voltar</button>
+                    <a th:href="@{/dieta/{path}(path=${user_id})}" class="btn btn-primary">Voltar</a>
             </form>
         </main>
 
