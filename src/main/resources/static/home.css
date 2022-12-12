@@ -3,7 +3,10 @@ body {
     font-size: 1rem;
     max-width: 960px;
     margin: auto;
+    /* background-image: url("./img/fundo-home.webp"); */
     background-image: url("./img/fundo-home.webp");
+    background-repeat: no-repeat;
+    background-size: cover;    
 }
 .container {
     border: 1px solid black;

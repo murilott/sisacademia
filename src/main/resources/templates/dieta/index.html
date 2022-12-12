@@ -24,11 +24,13 @@
                         <h5 th:text="@{'Nome: ' + ${umaDieta?.nome}}"></h5>
                         <h5 th:text="@{'Calorias: ' + ${umaDieta?.caloriaTotal}}"></h5>
                     </th:block>
+
+                    <h5 th:unless="${umaDieta != null}" th:text="@{Selecione ou crie uma Dieta.}"></h5>
                 </div>
                 <table class="table" id="customers" th:if="${umaDieta != null}">
                     <thead>
                         <tr>
-                            <th>Nome</th>
+                            <!-- <th>Nome</th> -->
                             <th>Lista de Pratos</th>
                         </tr>
                     </thead>
@@ -37,7 +39,7 @@
                         <!-- <tr th:each="umaDieta, stat : ${listaDietas}"> -->
                            
 
-                            <td th:text="${umaDieta.nome}"></td>
+                            <!-- <td th:text="${umaDieta.nome}"></td> -->
 
                             <td th:text="${umaDieta.retornaPratos()}"></td>
 
@@ -47,9 +49,10 @@
                         </tr>
                     </tbody>
                 </table>
-                <td>
+
+                <th:block th:if="${umaDieta != null}">
                     <a th:href="@{'/dieta/' + ${usuarioAtual.id} + '/selecionar/' + ${umaDieta?.id}} " class="btn btn-success">Selecionar Dieta</a>
-                </td>
+                </th:block>
             </div>
             
             <div class="navbutton">
