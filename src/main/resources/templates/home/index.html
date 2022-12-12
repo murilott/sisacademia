@@ -113,7 +113,6 @@
                         <a class="btn btn-info" th:href="@{'/dieta/' + ${umUsuario.id}}">Adicionar Dieta</a>
                             
                         <th:block th:if="${umUsuario.dietaAtual}">
-                            
                             <table class="table" id="tabrotina">
                                 <thead>
                                         <tr>
@@ -135,14 +134,15 @@
                                                 </th:block>
                                             </td>
                                         <!-- </th:block> -->
-
-                                        <td th:text="${#dates.format(umUsuario.rotinaAtual.dataInicio, 'dd/MM/yyyy')}"></td>  
+                                        
+                                        <td th:text="${#dates.format(umUsuario.dietaAtual.dataInicio, 'dd/MM/yyyy')}"></td>  
                                     <tr>
                                 </tbody>
                             </table>
                         </th:block>
                     </th:block>
-                </main>
+                </div>
+             </main>
          <footer th:include="layout :: footer"></footer>
     </body>
 </html>
