@@ -25,7 +25,7 @@
                         <h5 th:text="@{'Tempo Total(min): ' + ${#numbers.formatDecimal(umaRotina?.duracao()/60, 1, 2)}}">Tempo total:</h5>
                     </th:block>
                 </div>
-                <table class="table" th:if="${umaRotina != null}">
+                <table class="table" id="customers" th:if="${umaRotina != null}">
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -50,7 +50,7 @@
                     </tbody>
                 </table>
                 <td>
-                    <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/selecionar/' + ${umaRotina?.id}} " class="btn btn-info">Selecionar Rotina</a>
+                    <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/selecionar/' + ${umaRotina?.id}} " class="btn btn-success">Selecionar Rotina</a>
                 </td>
             </div>
             
