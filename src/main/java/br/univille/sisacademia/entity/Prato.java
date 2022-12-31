@@ -20,7 +20,7 @@ public class Prato {
 
     
     public float calculaCaloriasAlimento() {
-
+        
         return calorias;
     }
     

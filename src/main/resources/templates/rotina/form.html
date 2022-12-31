@@ -4,6 +4,8 @@
       
     <head th:include="layout :: head"></head>
 
+    <link rel="stylesheet" href="/cinza.css">
+
     <body>
         <nav th:replace="layout :: menu"></nav>
 
@@ -47,6 +49,7 @@
                                 <tbody>
                                     <tr th:each="umTreino, stat : ${novaRotina.listaTreinos}">
                                         <td th:text="${umTreino.nome}"></td>
+                                        <input type="hidden" th:field="${novaRotina.listaTreinos[__${stat.index}__].id}">
                                         <input type="hidden" th:field="${novaRotina.listaTreinos[__${stat.index}__].nome}">
 
                                         <td th:text="${umTreino.serie}"></td>

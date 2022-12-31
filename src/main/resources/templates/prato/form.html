@@ -17,6 +17,7 @@
                         <h5 class="card-title">
                             Pratos
                         </h5>
+
                         <table class="table" id="tabprato">
                             <thead>
                                 <tr>
@@ -24,6 +25,7 @@
                                     <th>Período</th>
                                     <th>Porção</th>
                                     <th>Calorias</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,26 +52,30 @@
                             <h5 class="card-title">
                                 Novo Prato
                             </h5>
+
                             <div class="form-group">
                                 <label for="txtnome">Nome:</label>
                                 <input type="text" th:field="${novoPrato.nome}"
                                     class="form-control" id="txtnome">                   
                             </div>
+
                             <div class="form-group">
                                 <label>Período:</label>
                                 <select class="form-select" th:field="${novoPrato.periodo}">
                                     <option value="vazio"></option>
                                     <option value="Manhã">Manhã</option>
                                     <option value="Almoço">Almoço</option>
-                                    <option value="Lanche">Tarde</option>
+                                    <option value="Tarde">Tarde</option>
                                     <option value="Janta">Janta</option>
                                 </select>  
                             </div>
+
                             <div class="form-group">
                                 <label for="txtquantidade">Porção (g):</label>
                                 <input type="text" th:field="${novoPrato.quantidade}"
                                     class="form-control" id="txtquantidade">                   
                             </div>
+
                             <div class="form-group">
                                 <label for="txtcalorias">Calorias:</label>
                                 <input type="text" th:field="${novoPrato.calorias}"
@@ -80,8 +86,8 @@
                         </div>
                         <!-- <a th:href="@{/dieta/{path}(path=${user_id})}" class="btn btn-primary">Voltar</a> -->
                     </div>
-                </form>
-            
+                </div>
+            </form>
         </main>
         <footer th:include="layout :: footer"></footer>
     </body>

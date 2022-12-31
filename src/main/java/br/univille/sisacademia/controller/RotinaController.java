@@ -142,8 +142,8 @@ public class RotinaController {
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView deletar(@PathVariable("id") long id) {
+    public ModelAndView deletar(@PathVariable("id") long id, @PathVariable("user_id") long user_id) {
         service.delete(id);
-        return new ModelAndView("redirect:/rotina");
+        return new ModelAndView("redirect:/rotina/{user_id}");
     }
 }
