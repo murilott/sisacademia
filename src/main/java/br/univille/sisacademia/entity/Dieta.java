@@ -13,6 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -22,7 +24,7 @@ public class Dieta {
     private long id;
     private String nome;
     private float calorias;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = { CascadeType.REFRESH} )
     private List<Prato> listaPratos = new ArrayList<Prato>();
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -31,7 +33,7 @@ public class Dieta {
 
     public float caloriaTotal() {
         for ( int i = 0; i < listaPratos.size(); i++ ) {
-            calorias =+ listaPratos.get(i).calculaCaloriasAlimento();
+            calorias += listaPratos.get(i).getCalorias();
         }
         return calorias;
     }

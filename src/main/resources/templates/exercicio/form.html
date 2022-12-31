@@ -23,19 +23,18 @@
                                     <th>Nome</th>
                                     <th>Categoria</th>
                                     <th>Dificuldade</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <tr th:each="umExercicio, stat : ${listaExercicios}">
                                     <td th:text="${umExercicio.nome}"></td>
-                                    <!-- <input type="hidden" th:field="${listaExercicios[__${stat.index}__].nome}"> -->
-                                    
-                                    <td th:text="${umExercicio.nivelRecomendado}"></td>
-                                    <!-- <input type="hidden" th:field="${listaExercicios[__${stat.index}__].nivelRecomendado}"> -->
                                     
                                     <td th:text="${umExercicio.categoria}"></td>
-                                    <!-- <input type="hidden" th:field="${listaExercicios[__${stat.index}__].categoria}"> -->
+
+                                    <td th:text="${umExercicio.nivelRecomendado}"></td>
+
                                     <td>
                                         <a class="btn btn-danger js-delete" th:href="@{'/exercicio/delete/' + ${umExercicio.id}}">Excluir</a>
                                     </td>
@@ -63,6 +62,7 @@
                                     <option value="Tríceps">Tríceps</option>
                                     <option value="Bíceps">Bíceps</option>
                                     <option value="Abdômen">Abdômen</option>
+                                    <option value="Costas">Costas</option>
                                 </select>  
                             </div>
 
@@ -79,6 +79,7 @@
                                 class="btn btn-primary">Adicionar Exercício</button>
                             </div>
                         </div>
+
                         <a href="/treino" class="btn btn-info">Montar treino</a>
                     </div>
                 </div>

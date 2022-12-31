@@ -74,7 +74,7 @@
                 </div>
                 <div class="rotina" >
                     <th:block th:each="umUsuario : ${listaUsuarios}">
-                        <a class="btn btn-info" th:href="@{'/rotina/' + ${umUsuario.id}}">Adicionar Rotina</a>
+                        <a class="btn btn-info" th:href="@{'/rotina/' + ${umUsuario.id}}">Selecionar Rotina</a>
                             
                         <th:block th:if="${umUsuario.rotinaAtual}">
                             <!-- <p th:text="${umUsuario.rotinaAtual.nome}"></p> -->
@@ -110,7 +110,7 @@
                 </div>
                 <div class="dieta">
                     <th:block th:each="umUsuario : ${listaUsuarios}">
-                        <a class="btn btn-info" th:href="@{'/dieta/' + ${umUsuario.id}}">Adicionar Dieta</a>
+                        <a class="btn btn-info" th:href="@{'/dieta/' + ${umUsuario.id}}">Selecionar Dieta</a>
                             
                         <th:block th:if="${umUsuario.dietaAtual}">
                             <table class="table" id="tabrotina">

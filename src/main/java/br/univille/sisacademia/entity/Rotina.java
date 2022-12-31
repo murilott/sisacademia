@@ -17,6 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Rotina {
@@ -27,7 +28,7 @@ public class Rotina {
     private float tempo = 0;
     private float calorias;
     // @OneToMany
-    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, fetch = FetchType.EAGER)
     @JoinColumn(name = "rotina_id")
     private List<Treino> listaTreinos = new ArrayList<Treino>();
     @Temporal(value = TemporalType.DATE)
@@ -40,7 +41,7 @@ public class Rotina {
         // com o valor "falso" para evitar erros
         tempo = 0;
         for ( int i = 0; i < listaTreinos.size(); i++ ) {
-            tempo += listaTreinos.get(i).getDuracao();
+            tempo += listaTreinos.get(i).getDuracao() * listaTreinos.get(i).getSerie();
         }
 
         return tempo;

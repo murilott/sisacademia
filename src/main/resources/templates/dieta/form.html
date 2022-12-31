@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
     <head th:include="layout :: head"></head>
-
+    <link rel="stylesheet" href="/cinza.css">
     <body>
         <nav th:replace="layout :: menu"></nav>
 
@@ -43,6 +43,7 @@
                                     <tr th:each="umPrato, stat : ${novaDieta.listaPratos}">
                                         <td th:text="${umPrato.nome}"></td>
                                         <input type="hidden" th:field="${novaDieta.listaPratos[__${stat.index}__].nome}">
+                                        <input type="hidden" th:field="${novaDieta.listaPratos[__${stat.index}__].id}">
 
                                         <td th:text="${umPrato.periodo}"></td>
                                         <input type="hidden" th:field="${novaDieta.listaPratos[__${stat.index}__].periodo}">

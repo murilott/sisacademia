@@ -24,11 +24,12 @@
                         <h5 th:text="@{'Nome: ' + ${umaRotina?.nome}}"></h5>
                         <h5 th:text="@{'Tempo Total(min): ' + ${#numbers.formatDecimal(umaRotina?.duracao()/60, 1, 2)}}">Tempo total:</h5>
                     </th:block>
+                    <h5 th:unless="${umaRotina != null}" th:text="@{Selecione ou crie uma Rotina.}"></h5>
                 </div>
                 <table class="table" id="customers" th:if="${umaRotina != null}">
                     <thead>
                         <tr>
-                            <th>Nome</th>
+                            <!-- <th>Nome</th> -->
                             <th>Lista de Treinos</th>
                         </tr>
                     </thead>
@@ -37,7 +38,7 @@
                         <!-- <tr th:each="umaRotina, stat : ${listaRotinas}"> -->
                         <tr>
                         
-                            <td th:text="${umaRotina?.nome}"></td>
+                            <!-- <td th:text="${umaRotina?.nome}"></td> -->
 
                             <td th:text="${umaRotina?.retornaTreinos()}"></td>
 
@@ -49,9 +50,10 @@
                         </tr>
                     </tbody>
                 </table>
-                <td>
+
+                <th:block th:if="${umaRotina != null}">
                     <a th:href="@{'/rotina/' + ${usuarioAtual.id} + '/selecionar/' + ${umaRotina?.id}} " class="btn btn-success">Selecionar Rotina</a>
-                </td>
+                </th:block>
             </div>
             
             <div class="navbutton">
